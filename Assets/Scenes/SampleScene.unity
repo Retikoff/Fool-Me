@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 62909479}
-  - component: {fileID: 62909478}
+  - component: {fileID: 62909480}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -136,20 +136,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &62909478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62909477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d9727c19a876640be11df4025d0089, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ApplyButton: {fileID: 572341984}
-  CancelButton: {fileID: 323267452}
 --- !u!4 &62909479
 Transform:
   m_ObjectHideFlags: 0
@@ -168,6 +154,19 @@ Transform:
   - {fileID: 323267454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &62909480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62909477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446ff3994239e0a44ace19f6cd6deedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedCardPosition: {fileID: 218777513}
 --- !u!1 &181688008
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +178,7 @@ GameObject:
   - component: {fileID: 181688010}
   - component: {fileID: 181688009}
   - component: {fileID: 181688011}
+  - component: {fileID: 181688012}
   m_Layer: 0
   m_Name: Card_0
   m_TagString: Untagged
@@ -302,6 +302,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4147942, y: 2.0195067}
   m_EdgeRadius: 0
+--- !u!114 &181688012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181688008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d9727c19a876640be11df4025d0089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &218777512
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218777513}
   m_Layer: 0
-  m_Name: Current Card Placement
+  m_Name: Selected Card Placement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,6 +355,8 @@ GameObject:
   m_Component:
   - component: {fileID: 323267454}
   - component: {fileID: 323267453}
+  - component: {fileID: 323267455}
+  - component: {fileID: 323267456}
   m_Layer: 0
   m_Name: Cancel Button
   m_TagString: Untagged
@@ -420,6 +434,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 62909479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &323267455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323267452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd2b0a61bfa38747b11d0bc29dfad16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!70 &323267456
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323267452}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.0000002, y: 2.0000005}
+  m_Direction: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +630,8 @@ GameObject:
   m_Component:
   - component: {fileID: 572341986}
   - component: {fileID: 572341985}
+  - component: {fileID: 572341987}
+  - component: {fileID: 572341988}
   m_Layer: 0
   m_Name: Apply Button
   m_TagString: Untagged
@@ -644,6 +709,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 62909479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &572341987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572341984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e836524c5b1c8b842a77e60d6bce6ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!70 &572341988
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572341984}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.0000009536743}
+  m_Size: {x: 1.0000002, y: 2.0000005}
+  m_Direction: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
