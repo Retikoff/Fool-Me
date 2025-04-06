@@ -21,8 +21,9 @@ public class NumericCard : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(isPickable)
+        if(isPickable){
             cardController.TurnPicked();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
