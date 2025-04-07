@@ -10,7 +10,9 @@ public class NumericHandController : MonoBehaviour
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnPoint;
-    private List<GameObject> handCards = new(4);
+    private List<GameObject> handCards = new();
+    private List<CardController> cardControllers = new();
+    private GameObject pickedCard;
 
     private void Update()
     {
@@ -23,14 +25,17 @@ public class NumericHandController : MonoBehaviour
         if(handCards.Count >= maxHandSize) return;
 
         GameObject newCard = Instantiate(cardPrefab, spawnPoint.position, spawnPoint.rotation);
+        newCard.transform.GetComponent<CardController>().HandController = this;
+
         handCards.Add(newCard);
-        UpdateCardPositions();
+
+        UpdateCards();
     }
 
-    public void RemoveCard(int index, ref GameObject removedCard){
-        removedCard = Instantiate(handCards[index]);
-        handCards.RemoveAt(index);
+    private void UpdateCards(){
         UpdateCardPositions();
+        UpdateCardControllers();
+        UpdateCardIndexes();
     }
 
     private void UpdateCardPositions(){
@@ -50,4 +55,35 @@ public class NumericHandController : MonoBehaviour
             handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
         }
     }
+
+    private void UpdateCardControllers(){
+        for(int i = 0;i<cardControllers.Count; i++){
+            cardControllers[i] = handCards[i].GetComponent<CardController>();
+        }
+    }
+
+    private void UpdateCardIndexes(){
+        for(int i = 0;i<cardControllers.Count;i++){
+            cardControllers[i].CardId = i; 
+        }
+    }
+
+    private void MoveCardToSelected(int id){
+
+    }
+
+    public void PickCard(int id){
+        if(pickedCard != null){
+            handCards.Add(pickedCard);
+            UpdateCards();
+        }
+
+        pickedCard = Instantiate(handCards[id]);
+        pickedCard.transform.DOMoveY(pickedCard.transform.position.y + 1f, 0.25f);
+
+        handCards.RemoveAt(id);
+        UpdateCards();
+    }
+
+
 }
