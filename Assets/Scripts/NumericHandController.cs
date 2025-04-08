@@ -11,22 +11,23 @@ public class NumericHandController : MonoBehaviour
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnPoint;
     private List<GameObject> handCards = new();
-    private List<CardController> cardControllers = new();
-    private GameObject pickedCard;
+    private CardController[] cardControllers;
+    private GameObject pickedCard = null;
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            DrawCard();
+            DrawCard(cardPrefab);
         }   
     }
 
-    private void DrawCard(){
+    public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        GameObject newCard = Instantiate(cardPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject newCard = Instantiate(card, spawnPoint.position, spawnPoint.rotation);
         newCard.transform.GetComponent<CardController>().HandController = this;
-
+        newCard.name = "Card";
+        
         handCards.Add(newCard);
 
         UpdateCards();
@@ -36,6 +37,9 @@ public class NumericHandController : MonoBehaviour
         UpdateCardPositions();
         UpdateCardControllers();
         UpdateCardIndexes();
+        foreach(var el in cardControllers){
+            Debug.Log(el.CardId);
+        }
     }
 
     private void UpdateCardPositions(){
@@ -57,13 +61,16 @@ public class NumericHandController : MonoBehaviour
     }
 
     private void UpdateCardControllers(){
-        for(int i = 0;i<cardControllers.Count; i++){
+        //might be huge memory leak
+        cardControllers = new CardController[handCards.Count];
+
+        for(int i = 0;i < handCards.Count; i++){
             cardControllers[i] = handCards[i].GetComponent<CardController>();
         }
     }
 
     private void UpdateCardIndexes(){
-        for(int i = 0;i<cardControllers.Count;i++){
+        for(int i = 0;i < handCards.Count;i++){
             cardControllers[i].CardId = i; 
         }
     }
@@ -74,16 +81,33 @@ public class NumericHandController : MonoBehaviour
 
     public void PickCard(int id){
         if(pickedCard != null){
-            handCards.Add(pickedCard);
-            UpdateCards();
+            MovePickedCardToHand();
         }
 
         pickedCard = Instantiate(handCards[id]);
-        pickedCard.transform.DOMoveY(pickedCard.transform.position.y + 1f, 0.25f);
+        pickedCard.name = "Picked Card";
 
+        pickedCard.transform.DOMoveY(pickedCard.transform.position.y + 4f, 0.25f);
+        pickedCard.transform.rotation = new Quaternion(0,0,0,0);
+        pickedCard.GetComponent<CardController>().SwitchButtons(true);
+        pickedCard.GetComponent<CardController>().HandController = this;
+
+        Destroy(handCards[id]);
         handCards.RemoveAt(id);
         UpdateCards();
+        Debug.Log("Picked cardId: " + id);
     }
 
+    private void MovePickedCardToHand(){
+        if(pickedCard == null)
+            return;
 
+        GameObject newCard = Instantiate(pickedCard);
+        newCard.name = "Card";
+        handCards.Add(newCard);
+        newCard.GetComponent<CardController>().HandController = this;
+
+        Destroy(pickedCard);
+        UpdateCards();
+    }
 }

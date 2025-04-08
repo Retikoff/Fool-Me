@@ -27,8 +27,8 @@ public class NumericCard : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        cardController.GoDeck();
-    }
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     cardController.GoDeck();
+    // }
 }

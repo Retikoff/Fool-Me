@@ -9,24 +9,26 @@ public class CardController : MonoBehaviour
     private GameObject cancelButton;
     private GameObject numericCard;
     public NumericHandController HandController {get;set;}
-    private bool isPicked = false;
+    //private bool isPicked = false;
 
     private void Awake()
     {
-        applyButton = gameObject.GetComponentInChildren<ApplyButton>().transform.gameObject;
+        //hard code
+        applyButton = transform.GetChild(1).gameObject;
         applyButton.SetActive(false);
-        cancelButton = gameObject.GetComponentInChildren<CancelButton>().transform.gameObject;
+        cancelButton = transform.GetChild(2).gameObject;
         cancelButton.SetActive(false);
-        numericCard = gameObject.GetComponentInChildren<NumericCard>().transform.gameObject;
-    }
+        numericCard = transform.GetChild(0).gameObject;
+    }   
 
     public void TurnPicked(){
-        isPicked = true;
         HandController.GetComponent<NumericHandController>().PickCard(CardId);
-
-        applyButton.SetActive(isPicked);
-        cancelButton.SetActive(isPicked);
     } 
+
+    public void SwitchButtons(bool value){
+        applyButton.SetActive(value);
+        cancelButton.SetActive(value);
+    }
 
     public void TurnSelected(){
         TurnPicked();

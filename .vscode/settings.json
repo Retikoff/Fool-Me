@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Fool Me MVP.sln"
+    "dotnet.defaultSolution": "Fool-Me-MVP.sln"
 }
