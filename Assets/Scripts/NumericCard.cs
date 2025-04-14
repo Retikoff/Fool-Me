@@ -5,6 +5,7 @@ using UnityEngine;
 public class NumericCard : MonoBehaviour
 {
     private CardController cardController;
+    public bool IsPicked { get;set; } = false;
 
     private void Start()
     {
@@ -13,6 +14,8 @@ public class NumericCard : MonoBehaviour
 
     private void OnMouseDown()
     {
-        cardController.TurnPicked();
+        if(!IsPicked){
+            cardController.TurnPicked();
+        }
     }
 }

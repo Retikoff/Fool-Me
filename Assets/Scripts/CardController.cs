@@ -27,6 +27,7 @@ public class CardController : MonoBehaviour
         } 
         set{
             isPicked = value;
+            numericCard.GetComponent<NumericCard>().IsPicked = value;
         }
     }
 
@@ -41,10 +42,7 @@ public class CardController : MonoBehaviour
     }   
 
     public void TurnPicked(){
-        if(!isPicked){
-            isPicked = true;
-            HandController.GetComponent<NumericHandController>().PickCard(CardId);
-        }
+        HandController.GetComponent<NumericHandController>().PickCard(CardId);
     } 
 
     public void SwitchButtons(bool value){
@@ -54,5 +52,9 @@ public class CardController : MonoBehaviour
 
     public void TurnSelected(){
         HandController.GetComponent<NumericHandController>().MoveCardToSelected();
+    }
+
+    public void MovePickedCardToHand(){
+        HandController.GetComponent<NumericHandController>().MovePickedCardToHand();
     }
 }

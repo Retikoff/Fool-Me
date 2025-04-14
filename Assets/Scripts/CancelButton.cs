@@ -12,6 +12,6 @@ public class CancelButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        cardController.TurnPicked();
+        cardController.MovePickedCardToHand();
     }
 }

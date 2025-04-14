@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 218777512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.07, y: -1.17, z: 0}
+  m_LocalPosition: {x: 2.62, y: -1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,6 +184,7 @@ MonoBehaviour:
   splineContainer: {fileID: 1432776081}
   spawnPoint: {fileID: 2133997618}
   gameController: {fileID: 1188633491}
+  pickedCardPoint: {fileID: 426865820}
 --- !u!4 &328954058
 Transform:
   m_ObjectHideFlags: 0
@@ -194,6 +195,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &426865819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426865820}
+  m_Layer: 0
+  m_Name: Picked Numeric Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &426865820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426865819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: -0.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -552,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPoint: {fileID: 218777513}
+  numericHandController: {fileID: 328954057}
 --- !u!1 &1432776080
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +632,7 @@ MonoBehaviour:
     m_Knots:
     - Position:
         x: -4
-        y: -4
+        y: -3.5
         z: 0
       TangentIn:
         x: -0
@@ -611,13 +644,13 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.43516222
+          x: 0.4351621
           y: 0.5573454
-          z: 0.5573454
-          w: 0.43516204
+          z: 0.55734545
+          w: 0.43516222
     - Position:
         x: -2
-        y: -3.5
+        y: -3
         z: 0
       TangentIn:
         x: 0
@@ -635,7 +668,7 @@ MonoBehaviour:
           w: 0.5
     - Position:
         x: 0
-        y: -4
+        y: -3.5
         z: 0
       TangentIn:
         x: -0
@@ -647,10 +680,10 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.55734545
-          y: 0.4351622
-          z: 0.4351621
-          w: 0.55734533
+          x: 0.55734533
+          y: 0.43516204
+          z: 0.4351622
+          w: 0.5573454
     m_MetaData:
     - Mode: 0
       Tension: 0.5
@@ -779,6 +812,7 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1188633490}
   - {fileID: 218777513}
+  - {fileID: 426865820}
   - {fileID: 2133997618}
   - {fileID: 1432776082}
   - {fileID: 328954058}

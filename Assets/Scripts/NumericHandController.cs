@@ -13,6 +13,7 @@ public class NumericHandController : MonoBehaviour
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameController gameController;
+    [SerializeField] private Transform pickedCardPoint;
 
     private List<GameObject> handCards = new();
     private CardController[] cardControllers;
@@ -54,8 +55,10 @@ public class NumericHandController : MonoBehaviour
             Vector3 forward = spline.EvaluateTangent(pos);
             Vector3 up = spline.EvaluateUpVector(pos);
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
-            handCards[i].transform.DOMove(splinePosition, 0.25f).SetAutoKill(true);
-            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f).SetAutoKill(true);
+            DOTween.logBehaviour = LogBehaviour.Verbose;
+            handCards[i].transform.DOMove(splinePosition, 0.25f);
+            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
+            
         }
     }
 
@@ -88,19 +91,21 @@ public class NumericHandController : MonoBehaviour
 
         pickedCard = Instantiate(handCards[id]);
         pickedCard.name = "Picked Card";
+        var pickedCardController = pickedCard.GetComponent<CardController>();
 
-        pickedCard.transform.DOMoveY(pickedCard.transform.position.y + 4f, 0.25f).SetAutoKill(true);
+        pickedCard.transform.DOMove(pickedCardPoint.position , 0.25f);
         pickedCard.transform.rotation = new Quaternion(0,0,0,0);
-        pickedCard.GetComponent<CardController>().SwitchButtons(true);
-        pickedCard.GetComponent<CardController>().HandController = this;
-        pickedCard.GetComponent<CardController>().CardId = -1;
+
+        pickedCardController.SwitchButtons(true);
+        pickedCardController.HandController = this;
+        pickedCardController.IsPicked = true;
 
         Destroy(handCards[id]);
         handCards.RemoveAt(id);
         UpdateCards();
     }
 
-    private void MovePickedCardToHand(){
+    public void MovePickedCardToHand(){
         if(pickedCard == null)
             return;
 
@@ -108,9 +113,16 @@ public class NumericHandController : MonoBehaviour
         handCards.Add(newCard);
         newCard.GetComponent<CardController>().SwitchButtons(false); 
         newCard.GetComponent<CardController>().HandController = this;
+        newCard.GetComponent<CardController>().IsPicked = false;
         
         UpdateCards();
         Destroy(pickedCard);
         pickedCard = null;
+    }
+
+    public void MoveSelectedCardToHand(GameObject selectedCard){
+        selectedCard.GetComponent<CardController>().IsPicked = false;
+        handCards.Add(selectedCard);
+        UpdateCards();
     }
 }
