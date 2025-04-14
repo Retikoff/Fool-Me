@@ -5,15 +5,6 @@ using UnityEngine;
 public class NumericCard : MonoBehaviour
 {
     private CardController cardController;
-    private bool isPickable = true;
-    public bool IsPickable {
-        get{
-        return isPickable;
-        } 
-        set{
-            isPickable = value;
-        }
-    }
 
     private void Start()
     {
@@ -22,13 +13,6 @@ public class NumericCard : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(isPickable){
-            cardController.TurnPicked();
-        }
+        cardController.TurnPicked();
     }
-
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     cardController.GoDeck();
-    // }
 }

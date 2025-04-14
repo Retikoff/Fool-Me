@@ -1,15 +1,34 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
 public class CardController : MonoBehaviour
 {
-    public int CardId {get; set;}
+    private int cardId = 0;
+    public int CardId {
+        get
+        {
+            return cardId;
+        } 
+        set{
+            cardId = value;
+            gameObject.name = "Card " + cardId;
+        }
+    }
     private GameObject applyButton;
     private GameObject cancelButton;
     private GameObject numericCard;
     public NumericHandController HandController {get;set;}
-    //private bool isPicked = false;
+    private bool isPicked = false;
+    public bool IsPicked {
+        get{
+            return isPicked;
+        } 
+        set{
+            isPicked = value;
+        }
+    }
 
     private void Awake()
     {
@@ -22,7 +41,10 @@ public class CardController : MonoBehaviour
     }   
 
     public void TurnPicked(){
-        HandController.GetComponent<NumericHandController>().PickCard(CardId);
+        if(!isPicked){
+            isPicked = true;
+            HandController.GetComponent<NumericHandController>().PickCard(CardId);
+        }
     } 
 
     public void SwitchButtons(bool value){
@@ -31,13 +53,6 @@ public class CardController : MonoBehaviour
     }
 
     public void TurnSelected(){
-        TurnPicked();
-        numericCard.GetComponent<NumericCard>().IsPickable = false;
-        //delete from numericHand List and assign to selectedCard position
-        transform.position = new Vector3(0,-0.35f,0);
-    }
-
-    public void GoDeck(){
-
+        HandController.GetComponent<NumericHandController>().MoveCardToSelected();
     }
 }

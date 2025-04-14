@@ -4,12 +4,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
 
+
+//Bug: dotween try to move objects that already destroyed so warning appear in console
 public class NumericHandController : MonoBehaviour
 {
     [SerializeField] private int maxHandSize;
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameController gameController;
+
     private List<GameObject> handCards = new();
     private CardController[] cardControllers;
     private GameObject pickedCard = null;
@@ -26,10 +30,8 @@ public class NumericHandController : MonoBehaviour
 
         GameObject newCard = Instantiate(card, spawnPoint.position, spawnPoint.rotation);
         newCard.transform.GetComponent<CardController>().HandController = this;
-        newCard.name = "Card";
         
         handCards.Add(newCard);
-
         UpdateCards();
     }
 
@@ -37,9 +39,6 @@ public class NumericHandController : MonoBehaviour
         UpdateCardPositions();
         UpdateCardControllers();
         UpdateCardIndexes();
-        foreach(var el in cardControllers){
-            Debug.Log(el.CardId);
-        }
     }
 
     private void UpdateCardPositions(){
@@ -55,8 +54,8 @@ public class NumericHandController : MonoBehaviour
             Vector3 forward = spline.EvaluateTangent(pos);
             Vector3 up = spline.EvaluateUpVector(pos);
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
-            handCards[i].transform.DOMove(splinePosition, 0.25f);
-            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
+            handCards[i].transform.DOMove(splinePosition, 0.25f).SetAutoKill(true);
+            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f).SetAutoKill(true);
         }
     }
 
@@ -75,27 +74,30 @@ public class NumericHandController : MonoBehaviour
         }
     }
 
-    private void MoveCardToSelected(int id){
+    public void MoveCardToSelected(){
+        pickedCard.name = "Selected card";
+        pickedCard.GetComponent<CardController>().SwitchButtons(false);
 
+        gameController.TurnCardSelected(pickedCard);
+
+        pickedCard = null;
     }
 
     public void PickCard(int id){
-        if(pickedCard != null){
-            MovePickedCardToHand();
-        }
+        MovePickedCardToHand();
 
         pickedCard = Instantiate(handCards[id]);
         pickedCard.name = "Picked Card";
 
-        pickedCard.transform.DOMoveY(pickedCard.transform.position.y + 4f, 0.25f);
+        pickedCard.transform.DOMoveY(pickedCard.transform.position.y + 4f, 0.25f).SetAutoKill(true);
         pickedCard.transform.rotation = new Quaternion(0,0,0,0);
         pickedCard.GetComponent<CardController>().SwitchButtons(true);
         pickedCard.GetComponent<CardController>().HandController = this;
+        pickedCard.GetComponent<CardController>().CardId = -1;
 
         Destroy(handCards[id]);
         handCards.RemoveAt(id);
         UpdateCards();
-        Debug.Log("Picked cardId: " + id);
     }
 
     private void MovePickedCardToHand(){
@@ -103,11 +105,12 @@ public class NumericHandController : MonoBehaviour
             return;
 
         GameObject newCard = Instantiate(pickedCard);
-        newCard.name = "Card";
         handCards.Add(newCard);
+        newCard.GetComponent<CardController>().SwitchButtons(false); 
         newCard.GetComponent<CardController>().HandController = this;
-
-        Destroy(pickedCard);
+        
         UpdateCards();
+        Destroy(pickedCard);
+        pickedCard = null;
     }
 }
