@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 218777512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.62, y: -1.17, z: 0}
+  m_LocalPosition: {x: 2.05, y: -2.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHandSize: 4
-  cardPrefab: {fileID: 3883884907046479970, guid: cc1bc3dcb410f8545aedf62eb50b15ae, type: 3}
   splineContainer: {fileID: 1432776081}
   spawnPoint: {fileID: 2133997618}
   gameController: {fileID: 1188633491}
@@ -415,7 +414,7 @@ MonoBehaviour:
     m_Knots:
     - Position:
         x: 4.2
-        y: -3.5
+        y: -4.5
         z: 0
       TangentIn:
         x: -0
@@ -427,13 +426,13 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.4351621
-          y: 0.55734533
-          z: 0.55734545
-          w: 0.4351622
+          x: 0.43516216
+          y: 0.55734545
+          z: 0.55734533
+          w: 0.4351621
     - Position:
         x: 6.2
-        y: -3
+        y: -4
         z: 0
       TangentIn:
         x: 0
@@ -451,7 +450,7 @@ MonoBehaviour:
           w: 0.49999923
     - Position:
         x: 8.2
-        y: -3.5
+        y: -4.5
         z: 0
       TangentIn:
         x: -0
@@ -463,10 +462,10 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.55734545
-          y: 0.4351622
-          z: 0.4351621
-          w: 0.55734533
+          x: 0.55734533
+          y: 0.4351621
+          z: 0.4351622
+          w: 0.55734545
     m_MetaData:
     - Mode: 0
       Tension: 0.5
@@ -579,6 +578,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &689200036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689200037}
+  m_Layer: 0
+  m_Name: Picked Boost Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &689200037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689200036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: -0.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -717,6 +747,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedPoint: {fileID: 218777513}
   numericHandController: {fileID: 328954057}
+  boostHandController: {fileID: 1204802028}
+  numericCardFab: {fileID: 3883884907046479970, guid: cc1bc3dcb410f8545aedf62eb50b15ae, type: 3}
+  boostCardFab: {fileID: 3097892853096448796, guid: e657014c4ca8e1842b6a9cc734f588c8, type: 3}
 --- !u!1 &1204802026
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +759,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204802027}
+  - component: {fileID: 1204802028}
   m_Layer: 0
   m_Name: BoostHandManager
   m_TagString: Untagged
@@ -748,6 +782,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1204802028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204802026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894a0456208f11a438fc45b262b292fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHandSize: 10
+  splineContainer: {fileID: 523550852}
+  spawnPoint: {fileID: 1932603837}
+  gameController: {fileID: 1188633491}
+  pickedCardPoint: {fileID: 689200037}
 --- !u!1 &1432776080
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +846,7 @@ MonoBehaviour:
     m_Knots:
     - Position:
         x: -4
-        y: -3.5
+        y: -4.5
         z: 0
       TangentIn:
         x: -0
@@ -808,12 +859,12 @@ MonoBehaviour:
       Rotation:
         value:
           x: 0.4351621
-          y: 0.5573454
+          y: 0.55734533
           z: 0.55734545
-          w: 0.43516222
+          w: 0.43516216
     - Position:
         x: -2
-        y: -3
+        y: -4
         z: 0
       TangentIn:
         x: 0
@@ -831,7 +882,7 @@ MonoBehaviour:
           w: 0.5
     - Position:
         x: 0
-        y: -3.5
+        y: -4.5
         z: 0
       TangentIn:
         x: -0
@@ -843,10 +894,10 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.55734533
-          y: 0.43516204
-          z: 0.4351622
-          w: 0.5573454
+          x: 0.55734545
+          y: 0.43516198
+          z: 0.4351623
+          w: 0.55734533
     m_MetaData:
     - Mode: 0
       Tension: 0.5
@@ -875,6 +926,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1932603836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1932603837}
+  m_Layer: 0
+  m_Name: BoostSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1932603837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932603836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.08, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -976,9 +1058,11 @@ SceneRoots:
   - {fileID: 1188633490}
   - {fileID: 218777513}
   - {fileID: 426865820}
+  - {fileID: 689200037}
+  - {fileID: 778811538}
   - {fileID: 2133997618}
   - {fileID: 1432776082}
   - {fileID: 328954058}
-  - {fileID: 778811538}
   - {fileID: 523550853}
   - {fileID: 1204802027}
+  - {fileID: 1932603837}

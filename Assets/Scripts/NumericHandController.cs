@@ -9,7 +9,6 @@ using UnityEngine.Splines;
 public class NumericHandController : MonoBehaviour
 {
     [SerializeField] private int maxHandSize;
-    [SerializeField] private GameObject cardPrefab;
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameController gameController;
@@ -18,13 +17,6 @@ public class NumericHandController : MonoBehaviour
     private List<GameObject> handCards = new();
     private CardController[] cardControllers;
     private GameObject pickedCard = null;
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            DrawCard(cardPrefab);
-        }   
-    }
 
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
@@ -55,10 +47,9 @@ public class NumericHandController : MonoBehaviour
             Vector3 forward = spline.EvaluateTangent(pos);
             Vector3 up = spline.EvaluateUpVector(pos);
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
-            DOTween.logBehaviour = LogBehaviour.Verbose;
+            DOTween.logBehaviour = LogBehaviour.Verbose; //???????????????
             handCards[i].transform.DOMove(splinePosition, 0.25f);
             handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
-            
         }
     }
 
