@@ -32,13 +32,13 @@ public class GameController : MonoBehaviour
     void OnGUI()
     {
         if(GUI.Button(new Rect(760,100,100,30), "+1")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, selectedCard.GetComponent<CardController>().CardValue + 1);
         }
         if(GUI.Button(new Rect(760, 140, 100, 30), "*2")){
-
+            CardFactory.ChangeNumericCard(selectedCard, selectedCard.GetComponent<CardController>().CardValue * 2);
         }
         if(GUI.Button(new Rect(760, 180, 100, 30), "-1")){
-
+            CardFactory.ChangeNumericCard(selectedCard, selectedCard.GetComponent<CardController>().CardValue - 1);
         }
         if(GUI.Button(new Rect(260, 10, 40, 40), "0")){
             CardFactory.ChangeNumericCard(selectedCard, 0);
@@ -52,44 +52,41 @@ public class GameController : MonoBehaviour
         if(GUI.Button(new Rect(410, 10, 40, 40), "3")){
             CardFactory.ChangeNumericCard(selectedCard, 3);
         }
-        if(GUI.Button(new Rect(460, 10, 40, 40), "3")){   
-            CardFactory.ChangeNumericCard(selectedCard, 3);
+        if(GUI.Button(new Rect(460, 10, 40, 40), "4")){
+            CardFactory.ChangeNumericCard(selectedCard, 4);
         }
-        if(GUI.Button(new Rect(510, 10, 40, 40), "4")){
-            
+        if(GUI.Button(new Rect(510, 10, 40, 40), "5")){
+            CardFactory.ChangeNumericCard(selectedCard, 5);
         }
-        if(GUI.Button(new Rect(560, 10, 40, 40), "5")){
-            
+        if(GUI.Button(new Rect(560, 10, 40, 40), "6")){
+            CardFactory.ChangeNumericCard(selectedCard, 6);
         }
-        if(GUI.Button(new Rect(610, 10, 40, 40), "6")){
-            
+        if(GUI.Button(new Rect(610, 10, 40, 40), "7")){
+            CardFactory.ChangeNumericCard(selectedCard, 7);
         }
-        if(GUI.Button(new Rect(660, 10, 40, 40), "7")){
-            
+        if(GUI.Button(new Rect(660, 10, 40, 40), "8")){
+            CardFactory.ChangeNumericCard(selectedCard, 8);
         }
-        if(GUI.Button(new Rect(710, 10, 40, 40), "8")){
-            
-        }
-        if(GUI.Button(new Rect(760, 10, 40, 40), "9")){
-            
+        if(GUI.Button(new Rect(710, 10, 40, 40), "9")){
+            CardFactory.ChangeNumericCard(selectedCard, 9);
         }
         if(GUI.Button(new Rect(260, 60, 40, 40), "10")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, 10);
         }
         if(GUI.Button(new Rect(310, 60, 40, 40), "11")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, 11);
         }
         if(GUI.Button(new Rect(360, 60, 40, 40), "12")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, 12);
         }
         if(GUI.Button(new Rect(410, 60, 40, 40), "13")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, 13);
         }
         if(GUI.Button(new Rect(460, 60, 40, 40), "14")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, 14);
         }
         if(GUI.Button(new Rect(510, 60, 40, 40), "15")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, 15);
         }
     }
 

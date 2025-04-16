@@ -13,8 +13,17 @@ public class CardFactory : MonoBehaviour
     }
 
     static public void ChangeNumericCard(GameObject numericCard, int value){
-       GameObject card = numericCard.transform.GetChild(0).gameObject;
-       SpriteRenderer cardRenderer = card.GetComponent<SpriteRenderer>();
-       cardRenderer.sprite = NumericDictionary[value];
+        if(value > 15){
+            value = 15;
+        }        
+        if(value < 0){
+            value = 0;
+        }
+
+        GameObject card = numericCard.transform.GetChild(0).gameObject;
+        SpriteRenderer cardRenderer = card.GetComponent<SpriteRenderer>();
+        cardRenderer.sprite = NumericDictionary[value];
+
+        numericCard.GetComponent<CardController>().CardValue = value;
     }
 }

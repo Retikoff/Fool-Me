@@ -30,6 +30,7 @@ public class CardController : MonoBehaviour
             numericCard.GetComponent<NumericCard>().IsPicked = value;
         }
     }
+    public int CardValue {get; set;} = 0; 
 
     private void Awake()
     {
