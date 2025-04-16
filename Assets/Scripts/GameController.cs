@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject boostCardFab;
     private GameObject selectedCard = null;
 
+    void Start()
+    {
+        CardFactory.Init();
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Q)){
@@ -27,7 +32,7 @@ public class GameController : MonoBehaviour
     void OnGUI()
     {
         if(GUI.Button(new Rect(760,100,100,30), "+1")){
-
+            
         }
         if(GUI.Button(new Rect(760, 140, 100, 30), "*2")){
 
@@ -36,19 +41,19 @@ public class GameController : MonoBehaviour
 
         }
         if(GUI.Button(new Rect(260, 10, 40, 40), "0")){
-
+            CardFactory.ChangeNumericCard(selectedCard, 0);
         }
         if(GUI.Button(new Rect(310, 10, 40, 40), "1")){
-
+            CardFactory.ChangeNumericCard(selectedCard, 1);
         }
         if(GUI.Button(new Rect(360, 10, 40, 40), "2")){
-            
+            CardFactory.ChangeNumericCard(selectedCard, 2);
         }
         if(GUI.Button(new Rect(410, 10, 40, 40), "3")){
-   
+            CardFactory.ChangeNumericCard(selectedCard, 3);
         }
         if(GUI.Button(new Rect(460, 10, 40, 40), "3")){   
-
+            CardFactory.ChangeNumericCard(selectedCard, 3);
         }
         if(GUI.Button(new Rect(510, 10, 40, 40), "4")){
             
