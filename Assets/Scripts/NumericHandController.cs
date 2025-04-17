@@ -21,7 +21,9 @@ public class NumericHandController : MonoBehaviour
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        GameObject newCard = Instantiate(card, spawnPoint.position, spawnPoint.rotation);
+        GameObject newCard = CardFactory.InstantiateNumericCard(card);
+        newCard.transform.position = spawnPoint.position;
+        newCard.transform.rotation = spawnPoint.rotation;
         newCard.transform.GetComponent<CardController>().HandController = this;
         
         handCards.Add(newCard);
@@ -80,8 +82,7 @@ public class NumericHandController : MonoBehaviour
     public void PickCard(int id){
         MovePickedCardToHand();
 
-        pickedCard = Instantiate(handCards[id]);
-        pickedCard.name = "Picked Card";
+        pickedCard = CardFactory.InstantiateNumericCard(handCards[id], "Picked Card");
         var pickedCardController = pickedCard.GetComponent<CardController>();
 
         pickedCard.transform.DOMove(pickedCardPoint.position , 0.25f);
@@ -100,7 +101,7 @@ public class NumericHandController : MonoBehaviour
         if(pickedCard == null)
             return;
 
-        GameObject newCard = Instantiate(pickedCard);
+        GameObject newCard = CardFactory.InstantiateNumericCard(pickedCard);
         handCards.Add(newCard);
         newCard.GetComponent<CardController>().SwitchButtons(false); 
         newCard.GetComponent<CardController>().HandController = this;

@@ -26,4 +26,14 @@ public class CardFactory : MonoBehaviour
 
         numericCard.GetComponent<CardController>().CardValue = value;
     }
+
+    static public GameObject InstantiateNumericCard(GameObject numericCard, string name = "Card"){
+        GameObject newCard = Instantiate(numericCard);
+
+        newCard.GetComponent<CardController>().CardValue = numericCard.GetComponent<CardController>().CardValue;
+
+        newCard.name = name;
+
+        return newCard;
+    }
 }
