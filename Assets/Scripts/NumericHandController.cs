@@ -21,7 +21,8 @@ public class NumericHandController : MonoBehaviour
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        GameObject newCard = CardFactory.InstantiateNumericCard(card);
+        //GameObject newCard = CardFactory.InstantiateNumericCard(card);
+        GameObject newCard = CardFactory.GetRandomNumericCard(card);
         newCard.transform.position = spawnPoint.position;
         newCard.transform.rotation = spawnPoint.rotation;
         newCard.transform.GetComponent<CardController>().HandController = this;
@@ -34,6 +35,7 @@ public class NumericHandController : MonoBehaviour
         UpdateCardPositions();
         UpdateCardControllers();
         UpdateCardIndexes();
+        UpdateCardLayerOrders();
     }
 
     private void UpdateCardPositions(){
@@ -67,6 +69,12 @@ public class NumericHandController : MonoBehaviour
     private void UpdateCardIndexes(){
         for(int i = 0;i < handCards.Count;i++){
             cardControllers[i].CardId = i; 
+        }
+    }
+
+    private void UpdateCardLayerOrders(){
+        for(int i = 0; i < handCards.Count; i++){
+            handCards[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
         }
     }
 

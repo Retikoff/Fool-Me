@@ -16,7 +16,10 @@ public class BoostHandController : MonoBehaviour
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        GameObject newCard = Instantiate(card, spawnPoint.position, spawnPoint.rotation);
+        //GameObject newCard = Instantiate(card, spawnPoint.position, spawnPoint.rotation);
+        GameObject newCard = CardFactory.GetRandomBoostCard(card);
+        newCard.transform.position = spawnPoint.position;
+        newCard.transform.rotation = spawnPoint.rotation;
         newCard.transform.GetComponent<BoostCardController>().HandController = this;
 
         handCards.Add(newCard);
@@ -25,6 +28,7 @@ public class BoostHandController : MonoBehaviour
 
     private void UpdateCards(){
         UpdateCardPositions();
+        UpdateCardLayerOrders();
     }
 
     private void UpdateCardPositions(){
@@ -42,6 +46,12 @@ public class BoostHandController : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
             handCards[i].transform.DOMove(splinePosition, 0.25f);
             handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
+        }
+    }
+
+    private void UpdateCardLayerOrders(){
+        for(int i = 0; i < handCards.Count; i++){
+            handCards[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
         }
     }
 }
