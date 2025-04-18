@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class CardFactory : MonoBehaviour
@@ -9,7 +8,8 @@ public class CardFactory : MonoBehaviour
     static private Dictionary<int,Sprite> NumericDictionary = new();
     static private Dictionary<string, Sprite> BoostDictionary = new();
     static private string[] operations = {"+","*","-"};
-    static public void Init(){
+
+    void Awake(){
         for(int i = 0; i < numericCardsCount; i++){
             NumericDictionary[i] = Resources.Load<Sprite>(ResourcesPatternNumeric + i); 
         } 
@@ -27,9 +27,6 @@ public class CardFactory : MonoBehaviour
 
             BoostDictionary["*" + i] = Resources.Load<Sprite>("Sprites/BoostCards/Boost_mul_" + i);
         }
-
-        Debug.Log(BoostDictionary["+1"]);
-        Debug.Log(BoostDictionary["*2"]);
     }
 
     static public void ChangeNumericCard(GameObject numericCard, int value){
@@ -51,9 +48,9 @@ public class CardFactory : MonoBehaviour
         GameObject newCard = Instantiate(numericCard);
 
         newCard.GetComponent<CardController>().CardValue = numericCard.GetComponent<CardController>().CardValue;
-
+        // conflict with naming in CardValue
         newCard.name = name;
-
+    
         return newCard;
     }
 
@@ -82,7 +79,9 @@ public class CardFactory : MonoBehaviour
             } while(ranValue == "1");
         }
 
+        ranCard.GetComponent<BoostCardController>().Action = ranOperation + ranValue;
         ranCard.GetComponentInChildren<SpriteRenderer>().sprite = BoostDictionary[ranOperation + ranValue];
+
         return ranCard;
     }
 }

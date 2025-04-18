@@ -51,10 +51,11 @@ public class NumericHandController : MonoBehaviour
             Vector3 forward = spline.EvaluateTangent(pos);
             Vector3 up = spline.EvaluateUpVector(pos);
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
-            DOTween.logBehaviour = LogBehaviour.Verbose; //???????????????
-            handCards[i].transform.DOMove(splinePosition, 0.25f);
-            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
-        }
+            if(handCards[i] != null){
+                handCards[i].transform.DOMove(splinePosition, 0.25f);
+                handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
+            }
+       }
     }
 
     private void UpdateCardControllers(){
@@ -93,15 +94,18 @@ public class NumericHandController : MonoBehaviour
         pickedCard = CardFactory.InstantiateNumericCard(handCards[id], "Picked Card");
         var pickedCardController = pickedCard.GetComponent<CardController>();
 
-        pickedCard.transform.DOMove(pickedCardPoint.position , 0.25f);
-        pickedCard.transform.rotation = new Quaternion(0,0,0,0);
-
-        pickedCardController.SwitchButtons(true);
         pickedCardController.HandController = this;
         pickedCardController.IsPicked = true;
 
+        if(pickedCard != null){
+            pickedCard.transform.DOMove(pickedCardPoint.position , 0.15f);
+            pickedCard.transform.rotation = new Quaternion(0,0,0,0);
+            pickedCardController.SwitchButtons(true);
+        }
+
         Destroy(handCards[id]);
         handCards.RemoveAt(id);
+        DEBUGPrintHandCardsList();
         UpdateCards();
     }
 
@@ -110,19 +114,28 @@ public class NumericHandController : MonoBehaviour
             return;
 
         GameObject newCard = CardFactory.InstantiateNumericCard(pickedCard);
-        handCards.Add(newCard);
+
         newCard.GetComponent<CardController>().SwitchButtons(false); 
         newCard.GetComponent<CardController>().HandController = this;
         newCard.GetComponent<CardController>().IsPicked = false;
-        
-        UpdateCards();
+
+        handCards.Add(newCard);
+  
         Destroy(pickedCard);
-        pickedCard = null;
-    }
+        UpdateCards();
+   }
 
     public void MoveSelectedCardToHand(GameObject selectedCard){
         selectedCard.GetComponent<CardController>().IsPicked = false;
         handCards.Add(selectedCard);
         UpdateCards();
+    }
+
+    private void DEBUGPrintHandCardsList(){
+        Debug.Log("List size: " + handCards.Count);
+        Debug.Log("All elements and their i");
+        for(int i = 0; i < handCards.Count; i++){
+            Debug.Log("Index " + i + " element: " + handCards[i]);
+        }
     }
 }

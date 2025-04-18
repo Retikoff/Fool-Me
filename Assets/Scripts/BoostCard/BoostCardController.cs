@@ -16,7 +16,7 @@ public class BoostCardController : MonoBehaviour
     private GameObject cancelButton;
     private GameObject boostCard;
     public BoostHandController HandController {get;set;}
-
+    public string Action {get; set;}
     private bool isPicked = false;
     public bool IsPicked{
         get{

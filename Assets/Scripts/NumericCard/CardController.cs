@@ -13,7 +13,7 @@ public class CardController : MonoBehaviour
         } 
         set{
             cardId = value;
-            gameObject.name = "Card " + cardId;
+            //gameObject.name = "Card " + cardId;
         }
     }
     private GameObject applyButton;
@@ -30,7 +30,16 @@ public class CardController : MonoBehaviour
             numericCard.GetComponent<NumericCard>().IsPicked = value;
         }
     }
-    public int CardValue {get; set;} = 0; 
+    private int cardValue = 0;
+    public int CardValue {
+        get{
+            return cardValue; 
+        }
+        set{
+            cardValue = value;
+            gameObject.name = "Card " + value.ToString();
+        }
+    }  
 
     private void Awake()
     {

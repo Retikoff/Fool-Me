@@ -10,12 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private BoostHandController boostHandController;
     [SerializeField] private GameObject numericCardFab;
     [SerializeField] private GameObject boostCardFab;
-    private GameObject selectedCard = null;
-
-    void Start()
-    {
-        CardFactory.Init();
-    }
+    private GameObject selectedCard = null; 
 
     void Update()
     {
