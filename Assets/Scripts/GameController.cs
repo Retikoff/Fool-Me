@@ -90,16 +90,16 @@ public class GameController : MonoBehaviour
             selectedCard = card;
         }
         else{
-            ScaleGameObject(selectedCard, new Vector3(1,1,1));
+            selectedCard.transform.localScale = new Vector3(1,1,1);            
             numericHandController.MoveSelectedCardToHand(selectedCard);
             selectedCard = card;
         }
         
-        ScaleGameObject(selectedCard, new Vector3(1.5f,1.5f,1.5f));
+        ScaleGameObject(selectedCard, new Vector3(1.5f,1.5f,1.5f), 0.25f);
         selectedCard.transform.DOLocalMove(selectedPoint.position, 0.25f);
     }
 
-    private void ScaleGameObject(GameObject obj, Vector3 scale){
-        obj.transform.DOScale(scale, 0.25f);
+    private void ScaleGameObject(GameObject obj, Vector3 scale, float duration){
+        obj.transform.DOScale(scale, duration);
     }
 }

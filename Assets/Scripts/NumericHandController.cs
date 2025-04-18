@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Splines;
 
 
-//Bug: dotween try to move objects that already destroyed so warning appear in console
 public class NumericHandController : MonoBehaviour
 {
     [SerializeField] private int maxHandSize;
@@ -40,6 +39,8 @@ public class NumericHandController : MonoBehaviour
 
     private void UpdateCardPositions(){
         if(handCards.Count == 0) return;
+        
+        DOTween.KillAll();
 
         float cardSpacing = 1f / maxHandSize;
         float firstCardPosition = 0.5f - (handCards.Count - 1) * cardSpacing / 2;
@@ -51,11 +52,9 @@ public class NumericHandController : MonoBehaviour
             Vector3 forward = spline.EvaluateTangent(pos);
             Vector3 up = spline.EvaluateUpVector(pos);
             Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
-            if(handCards[i] != null){
-                handCards[i].transform.DOMove(splinePosition, 0.25f);
-                handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
-            }
-       }
+            handCards[i].transform.DOMove(splinePosition, 0.25f);
+            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
+        }
     }
 
     private void UpdateCardControllers(){
@@ -91,37 +90,28 @@ public class NumericHandController : MonoBehaviour
     public void PickCard(int id){
         MovePickedCardToHand();
 
-        pickedCard = CardFactory.InstantiateNumericCard(handCards[id], "Picked Card");
+        pickedCard = handCards[id];
         var pickedCardController = pickedCard.GetComponent<CardController>();
 
-        pickedCardController.HandController = this;
+        handCards.RemoveAt(id);
+        UpdateCards();
+
         pickedCardController.IsPicked = true;
 
-        if(pickedCard != null){
-            pickedCard.transform.DOMove(pickedCardPoint.position , 0.15f);
-            pickedCard.transform.rotation = new Quaternion(0,0,0,0);
-            pickedCardController.SwitchButtons(true);
-        }
-
-        Destroy(handCards[id]);
-        handCards.RemoveAt(id);
-        DEBUGPrintHandCardsList();
-        UpdateCards();
+        pickedCard.transform.DOMove(pickedCardPoint.position , 0.15f);
+        pickedCard.transform.rotation = new Quaternion(0,0,0,0);
+        pickedCardController.SwitchButtons(true);
     }
 
     public void MovePickedCardToHand(){
         if(pickedCard == null)
             return;
 
-        GameObject newCard = CardFactory.InstantiateNumericCard(pickedCard);
+        pickedCard.GetComponent<CardController>().SwitchButtons(false); 
+        pickedCard.GetComponent<CardController>().IsPicked = false;
 
-        newCard.GetComponent<CardController>().SwitchButtons(false); 
-        newCard.GetComponent<CardController>().HandController = this;
-        newCard.GetComponent<CardController>().IsPicked = false;
-
-        handCards.Add(newCard);
-  
-        Destroy(pickedCard);
+        handCards.Add(pickedCard);
+        pickedCard = null;  
         UpdateCards();
    }
 
