@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5118635755172327616}
   - component: {fileID: 1772636874278659928}
-  - component: {fileID: 7513629676182246745}
   - component: {fileID: 8917035173931523511}
+  - component: {fileID: 8904013081096320063}
   m_Layer: 0
   m_Name: Apply Button
   m_TagString: Untagged
@@ -89,18 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7513629676182246745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3257953897478734489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e836524c5b1c8b842a77e60d6bce6ee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &8917035173931523511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,6 +126,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.0000009536743}
   m_Size: {x: 1.0000002, y: 2.0000005}
   m_Direction: 0
+--- !u!114 &8904013081096320063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3257953897478734489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e836524c5b1c8b842a77e60d6bce6ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3883884907046479970
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8605843298812720874}
-  - component: {fileID: 8479327833354304466}
+  - component: {fileID: 4883177038987483800}
   m_Layer: 0
   m_Name: NumericCard
   m_TagString: Untagged
@@ -173,7 +173,7 @@ Transform:
   - {fileID: 104688714748493800}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8479327833354304466
+--- !u!114 &4883177038987483800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 1597094680581642458}
   - component: {fileID: 7262272532779897687}
   - component: {fileID: 8370259907777634206}
-  - component: {fileID: 4800447993112873899}
+  - component: {fileID: 3142783704664192477}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -320,7 +320,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.4147942, y: 2.0195067}
   m_EdgeRadius: 0
---- !u!114 &4800447993112873899
+--- !u!114 &3142783704664192477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,8 +342,8 @@ GameObject:
   m_Component:
   - component: {fileID: 104688714748493800}
   - component: {fileID: 4774410870804394961}
-  - component: {fileID: 39512641716953935}
   - component: {fileID: 2294213077310146355}
+  - component: {fileID: 8274594021489979211}
   m_Layer: 0
   m_Name: Cancel Button
   m_TagString: Untagged
@@ -421,18 +421,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &39512641716953935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4749791153659541338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd2b0a61bfa38747b11d0bc29dfad16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &2294213077310146355
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -470,3 +458,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.0000002, y: 2.0000005}
   m_Direction: 0
+--- !u!114 &8274594021489979211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4749791153659541338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd2b0a61bfa38747b11d0bc29dfad16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

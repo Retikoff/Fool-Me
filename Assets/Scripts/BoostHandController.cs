@@ -11,7 +11,9 @@ public class BoostHandController : MonoBehaviour
     [SerializeField] private GameController gameController;
     [SerializeField] private Transform pickedCardPoint;
 
+    private GameObject pickedCard = null;
     private List<GameObject> handCards = new();
+    private BoostCardController[] cardControllers;
     
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
@@ -28,11 +30,15 @@ public class BoostHandController : MonoBehaviour
 
     private void UpdateCards(){
         UpdateCardPositions();
+        UpdateCardControllers();
+        UpdateCardIndexes();
         UpdateCardLayerOrders();
     }
 
     private void UpdateCardPositions(){
         if(handCards.Count == 0) return;
+
+        DOTween.KillAll();
 
         float cardSpacing = 1f / maxHandSize;
         float firstCardPosition = 0.5f - (handCards.Count - 1) * cardSpacing / 2;
@@ -49,9 +55,54 @@ public class BoostHandController : MonoBehaviour
         }
     }
 
+    private void UpdateCardControllers(){
+        cardControllers = null;
+        cardControllers = new BoostCardController[handCards.Count];
+
+        for(int i = 0; i < handCards.Count; i++){
+            cardControllers[i] = handCards[i].GetComponent<BoostCardController>();
+        }
+    }
+
+    private void UpdateCardIndexes(){
+        for(int i = 0;i < handCards.Count; i++){
+            cardControllers[i].CardId = i;
+        }
+    }
+
     private void UpdateCardLayerOrders(){
         for(int i = 0; i < handCards.Count; i++){
             handCards[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
         }
+    }
+
+    public void PickCard(int id){
+        MovePickedCardToHand();
+
+        pickedCard = handCards[id];
+        var pickedCardController = pickedCard.GetComponent<BoostCardController>();
+
+        handCards.RemoveAt(id);
+        UpdateCards();
+
+        pickedCardController.IsPicked = true;
+
+        pickedCard.transform.DOMove(pickedCardPoint.position, 0.15f);
+        pickedCard.transform.rotation = new Quaternion(0, 0, 0, 0);
+        pickedCardController.SwitchButtons(true);
+    }
+
+    public void MovePickedCardToHand(){
+        if(pickedCard == null){
+            return;
+        }
+
+        pickedCard.GetComponent<BoostCardController>().SwitchButtons(false);
+        pickedCard.GetComponent<BoostCardController>().IsPicked = false;
+
+        handCards.Add(pickedCard);
+        pickedCard = null;
+
+        UpdateCards();
     }
 }

@@ -59,6 +59,7 @@ public class NumericHandController : MonoBehaviour
 
     private void UpdateCardControllers(){
         //might be huge memory leak
+        cardControllers = null;
         cardControllers = new CardController[handCards.Count];
 
         for(int i = 0;i < handCards.Count; i++){

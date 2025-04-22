@@ -13,7 +13,7 @@ public class BoostCard : MonoBehaviour
     private void OnMouseDown()
     {
         if(!IsPicked){
-            //cardController.TurnPicked();
+            cardController.TurnPicked();
         }
     }
 }

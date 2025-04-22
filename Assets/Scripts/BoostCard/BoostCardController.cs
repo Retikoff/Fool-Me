@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class BoostCardController : MonoBehaviour
 {
@@ -36,5 +37,16 @@ public class BoostCardController : MonoBehaviour
         cancelButton.SetActive(false);
     }
     
-    
+    public void SwitchButtons(bool value){
+        applyButton.SetActive(value);
+        cancelButton.SetActive(value);
+    }
+
+    public void TurnPicked(){
+        HandController.GetComponent<BoostHandController>().PickCard(CardId);
+    }
+
+    public void MovePickedCardToHand(){
+        HandController.GetComponent<BoostHandController>().MovePickedCardToHand();
+    }
 }
