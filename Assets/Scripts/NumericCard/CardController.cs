@@ -67,4 +67,8 @@ public class CardController : MonoBehaviour
     public void MovePickedCardToHand(){
         HandController.GetComponent<NumericHandController>().MovePickedCardToHand();
     }
+
+    public void SetName(){
+        gameObject.name = "Card " + CardValue;
+    }
 }

@@ -117,6 +117,7 @@ public class NumericHandController : MonoBehaviour
 
     public void MoveSelectedCardToHand(GameObject selectedCard){
         selectedCard.GetComponent<CardController>().IsPicked = false;
+        selectedCard.GetComponent<CardController>().SetName();
         handCards.Add(selectedCard);
         UpdateCards();
     }
