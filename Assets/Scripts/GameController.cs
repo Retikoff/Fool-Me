@@ -100,6 +100,7 @@ public class GameController : MonoBehaviour
     }
 
     private void ScaleGameObject(GameObject obj, Vector3 scale, float duration){
+        //also scale childrens sprite renderers (for boost marks)
         obj.transform.DOScale(scale, duration);
     }
 }
