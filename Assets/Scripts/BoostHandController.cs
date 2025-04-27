@@ -73,6 +73,7 @@ public class BoostHandController : MonoBehaviour
     private void UpdateCardLayerOrders(){
         for(int i = 0; i < handCards.Count; i++){
             handCards[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
+            handCards[i].GetComponentInChildren<Collider2D>().layerOverridePriority = handCards.Count - i;
         }
     }
 
