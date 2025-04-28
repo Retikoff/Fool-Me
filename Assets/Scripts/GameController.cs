@@ -105,15 +105,15 @@ public class GameController : MonoBehaviour
         selectedCardValue = selectedCard.GetComponent<CardController>().CardValue;
     }
 
-    public void ApplyBoost(GameObject obj){
+    public bool ApplyBoost(GameObject obj){
         if(selectedCard == null){
             //show message that numericCard is not selected
-            return;
+            return false;
         }
 
         if(selectedCard.GetComponent<CardController>().CurrentMarkIndex == 4){
             //show message that selected card already have 4 marks
-            return;
+            return false;
         }
 
         string action = obj.GetComponent<BoostCardController>().Action;        
@@ -139,6 +139,7 @@ public class GameController : MonoBehaviour
                 break;
         }
         selectedCard.GetComponent<CardController>().AddMark(obj.GetComponent<BoostCardController>().boostMark);
+        return true;
     }
 
     private void ScaleGameObject(GameObject obj, Vector3 scale, float duration){

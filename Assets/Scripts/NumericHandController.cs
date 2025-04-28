@@ -97,6 +97,7 @@ public class NumericHandController : MonoBehaviour
         UpdateCards();
 
         pickedCardController.IsPicked = true;
+        pickedCardController.SwitchMarks(true);
 
         pickedCard.transform.DOMove(pickedCardPoint.position , 0.15f);
         pickedCard.transform.rotation = new Quaternion(0,0,0,0);
@@ -109,6 +110,7 @@ public class NumericHandController : MonoBehaviour
 
         pickedCard.GetComponent<CardController>().SwitchButtons(false); 
         pickedCard.GetComponent<CardController>().IsPicked = false;
+        pickedCard.GetComponent<CardController>().SwitchMarks(false);
 
         handCards.Add(pickedCard);
         pickedCard = null;  
@@ -117,6 +119,7 @@ public class NumericHandController : MonoBehaviour
 
     public void MoveSelectedCardToHand(GameObject selectedCard){
         selectedCard.GetComponent<CardController>().IsPicked = false;
+        selectedCard.GetComponent<CardController>().SwitchMarks(false);
         selectedCard.GetComponent<CardController>().SetName();
         handCards.Add(selectedCard);
         UpdateCards();

@@ -55,6 +55,7 @@ public class CardController : MonoBehaviour
         for(int i = 0; i < 4; i++){
             markSlots[i] = tmp.transform.GetChild(i).gameObject;
         }
+        SwitchMarks(false);
     }   
 
     public void TurnPicked(){
@@ -64,6 +65,12 @@ public class CardController : MonoBehaviour
     public void SwitchButtons(bool value){
         applyButton.SetActive(value);
         cancelButton.SetActive(value);
+    }
+
+    public void SwitchMarks(bool value){
+        for(int i = 0;i < 4; i++){
+            markSlots[i].SetActive(value);
+        }
     }
 
     public void TurnSelected(){

@@ -88,7 +88,7 @@ public class BoostHandController : MonoBehaviour
 
         pickedCardController.IsPicked = true;
         pickedCard.name = "Picked Boost card";
-        pickedCard.transform.DOMove(pickedCardPoint.position, 0.15f);
+        pickedCard.transform.DOMove(pickedCardPoint.position, 0.25f);
         pickedCard.transform.rotation = new Quaternion(0, 0, 0, 0);
         pickedCardController.SwitchButtons(true);
         Debug.Log("Just picked " + pickedCardController.Action);
@@ -109,8 +109,9 @@ public class BoostHandController : MonoBehaviour
     }
 
     public void ApplyBoost(){
-        gameController.ApplyBoost(pickedCard);
+        bool isCompleted = gameController.ApplyBoost(pickedCard);
         //switch buttons??
-        pickedCard = null;
+        if(isCompleted)
+            pickedCard = null;
     }
 }
