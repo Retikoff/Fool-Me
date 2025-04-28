@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dae4ec7b0128074aacd4b78335a8ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHandSize: 4
+  maxHandSize: 12
   splineContainer: {fileID: 1432776081}
   spawnPoint: {fileID: 2133997618}
   gameController: {fileID: 1188633491}
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894a0456208f11a438fc45b262b292fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHandSize: 5
+  maxHandSize: 8
   splineContainer: {fileID: 523550852}
   spawnPoint: {fileID: 1932603837}
   gameController: {fileID: 1188633491}

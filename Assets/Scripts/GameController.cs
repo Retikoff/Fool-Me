@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject numericCardFab;
     [SerializeField] private GameObject boostCardFab;
     private GameObject selectedCard = null; 
+    private int selectedCardValue = 0;
 
     void Update()
     {
@@ -21,11 +22,16 @@ public class GameController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.W)){
             boostHandController.DrawCard(boostCardFab);
         }
+
+        if( selectedCard != null && (selectedCardValue != selectedCard.GetComponent<CardController>().CardValue)){
+            selectedCardValue = selectedCard.GetComponent<CardController>().CardValue; 
+        }
     }
 
     //debug for init implementation
     void OnGUI()
     {
+        #region DEBUG_SETTERS
         if(GUI.Button(new Rect(760,100,100,30), "+1")){
             CardFactory.ChangeNumericCard(selectedCard, selectedCard.GetComponent<CardController>().CardValue + 1);
         }
@@ -83,6 +89,7 @@ public class GameController : MonoBehaviour
         if(GUI.Button(new Rect(510, 60, 40, 40), "15")){
             CardFactory.ChangeNumericCard(selectedCard, 15);
         }
+        #endregion 
     }
 
     public void TurnCardSelected(GameObject card){
@@ -97,10 +104,41 @@ public class GameController : MonoBehaviour
         
         ScaleGameObject(selectedCard, new Vector3(1.5f,1.5f,1.5f), 0.25f);
         selectedCard.transform.DOLocalMove(selectedPoint.position, 0.25f);
+        selectedCardValue = selectedCard.GetComponent<CardController>().CardValue;
     }
 
     private void ScaleGameObject(GameObject obj, Vector3 scale, float duration){
         //also scale childrens sprite renderers (for boost marks)
         obj.transform.DOScale(scale, duration);
+    }
+
+    public void ApplyBoost(GameObject obj){
+        if(selectedCard == null){
+            //show message that numericCard is not selected
+            return;
+        }
+
+        string action = obj.GetComponent<BoostCardController>().Action;        
+        char actionOperation = action[0];
+        char actionValue = action[1];
+
+        obj.transform.DOLocalMove(selectedPoint.position, 0.25f);
+        DOTween.Kill(obj.transform);
+        Destroy(obj);
+
+        switch(actionOperation){
+            case '+':
+                CardFactory.ChangeNumericCard(selectedCard, selectedCardValue + int.Parse(actionValue.ToString()));
+                break;
+            case '-':
+                CardFactory.ChangeNumericCard(selectedCard, selectedCardValue - int.Parse(actionValue.ToString()));
+                break;
+            case '*':
+                CardFactory.ChangeNumericCard(selectedCard, selectedCardValue * int.Parse(actionValue.ToString()));
+                break;
+            default:
+                Debug.Log("Error in applyBoost switch (unhandled operation)");
+                break;
+        }
     }
 }

@@ -16,4 +16,9 @@ public class BoostCard : MonoBehaviour
             cardController.TurnPicked();
         }
     }
+
+    private void OnMouseOver()
+    {
+        cardController.PrintOveredCard();
+    }
 }

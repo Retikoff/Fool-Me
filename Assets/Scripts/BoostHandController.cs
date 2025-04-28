@@ -73,7 +73,7 @@ public class BoostHandController : MonoBehaviour
     private void UpdateCardLayerOrders(){
         for(int i = 0; i < handCards.Count; i++){
             handCards[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
-            handCards[i].GetComponentInChildren<Collider2D>().layerOverridePriority = handCards.Count - i;
+            handCards[i].GetComponentInChildren<Collider2D>().layerOverridePriority = i;
         }
     }
 
@@ -87,10 +87,11 @@ public class BoostHandController : MonoBehaviour
         UpdateCards();
 
         pickedCardController.IsPicked = true;
-
+        pickedCard.name = "Picked Boost card";
         pickedCard.transform.DOMove(pickedCardPoint.position, 0.15f);
         pickedCard.transform.rotation = new Quaternion(0, 0, 0, 0);
         pickedCardController.SwitchButtons(true);
+        Debug.Log("Just picked " + pickedCardController.Action);
     }
 
     public void MovePickedCardToHand(){
@@ -105,5 +106,12 @@ public class BoostHandController : MonoBehaviour
         pickedCard = null;
 
         UpdateCards();
+    }
+
+    public void ApplyBoost(){
+        pickedCard.GetComponent<BoostCardController>().SwitchButtons(false);
+        gameController.ApplyBoost(pickedCard);
+        
+        pickedCard = null;
     }
 }
