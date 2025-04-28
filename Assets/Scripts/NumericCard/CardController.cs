@@ -40,6 +40,8 @@ public class CardController : MonoBehaviour
             gameObject.name = "Card " + value.ToString();
         }
     }  
+    private GameObject[] markSlots = new GameObject[4];
+    public int CurrentMarkIndex = 0;
 
     private void Awake()
     {
@@ -49,6 +51,10 @@ public class CardController : MonoBehaviour
         cancelButton = transform.GetChild(2).gameObject;
         cancelButton.SetActive(false);
         numericCard = transform.GetChild(0).gameObject;
+        var tmp = transform.GetChild(3).gameObject;
+        for(int i = 0; i < 4; i++){
+            markSlots[i] = tmp.transform.GetChild(i).gameObject;
+        }
     }   
 
     public void TurnPicked(){
@@ -70,5 +76,12 @@ public class CardController : MonoBehaviour
 
     public void SetName(){
         gameObject.name = "Card " + CardValue;
+    }
+
+    public void AddMark(Sprite mark){
+        if(CurrentMarkIndex > 3) return;
+        Debug.Log(mark); 
+        markSlots[CurrentMarkIndex].GetComponent<SpriteRenderer>().sprite = mark;
+        CurrentMarkIndex++;
     }
 }

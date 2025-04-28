@@ -1,7 +1,5 @@
 using DG.Tweening;
-using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
@@ -107,14 +105,14 @@ public class GameController : MonoBehaviour
         selectedCardValue = selectedCard.GetComponent<CardController>().CardValue;
     }
 
-    private void ScaleGameObject(GameObject obj, Vector3 scale, float duration){
-        //also scale childrens sprite renderers (for boost marks)
-        obj.transform.DOScale(scale, duration);
-    }
-
     public void ApplyBoost(GameObject obj){
         if(selectedCard == null){
             //show message that numericCard is not selected
+            return;
+        }
+
+        if(selectedCard.GetComponent<CardController>().CurrentMarkIndex == 4){
+            //show message that selected card already have 4 marks
             return;
         }
 
@@ -140,5 +138,10 @@ public class GameController : MonoBehaviour
                 Debug.Log("Error in applyBoost switch (unhandled operation)");
                 break;
         }
+        selectedCard.GetComponent<CardController>().AddMark(obj.GetComponent<BoostCardController>().boostMark);
+    }
+
+    private void ScaleGameObject(GameObject obj, Vector3 scale, float duration){
+        obj.transform.DOScale(scale, duration);
     }
 }

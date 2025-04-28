@@ -4,28 +4,31 @@ using UnityEngine;
 public class CardFactory : MonoBehaviour
 {
     static public int numericCardsCount = 16;
-    static private string ResourcesPatternNumeric = "Sprites/NumericCards/Card_";
     static private Dictionary<int,Sprite> NumericDictionary = new();
     static private Dictionary<string, Sprite> BoostDictionary = new();
+    static private Dictionary<string, Sprite> BoostMarkDictionary = new();
     static private string[] operations = {"+","*","-"};
 
     void Awake(){
         for(int i = 0; i < numericCardsCount; i++){
-            NumericDictionary[i] = Resources.Load<Sprite>(ResourcesPatternNumeric + i); 
+            NumericDictionary[i] = Resources.Load<Sprite>("Sprites/NumericCards/Card_" + i); 
         } 
 
         for(int i = 1; i <= 4;i++){
             BoostDictionary["-" + i] = Resources.Load<Sprite>("Sprites/BoostCards/Boost_min_" + i);
+            BoostMarkDictionary["-" + i] = Resources.Load<Sprite>("Sprites/Marks/BoostMark_min_" + i);
         } 
         
         for(int i = 1; i <= 4; i++){
             BoostDictionary["+" + i] = Resources.Load<Sprite>("Sprites/BoostCards/Boost_p_" + i);
+            BoostMarkDictionary["+" + i] = Resources.Load<Sprite>("Sprites/Marks/BoostMark_p_" + i);
         }
 
         for(int i = 0; i <= 4; i++){
             if(i == 1) continue;
 
             BoostDictionary["*" + i] = Resources.Load<Sprite>("Sprites/BoostCards/Boost_mul_" + i);
+            BoostMarkDictionary["*" + i] = Resources.Load<Sprite>("Sprites/Marks/BoostMark_mul_" + i);
         }
     }
 
@@ -81,6 +84,7 @@ public class CardFactory : MonoBehaviour
 
         ranCard.GetComponent<BoostCardController>().Action = ranOperation + ranValue;
         ranCard.GetComponentInChildren<SpriteRenderer>().sprite = BoostDictionary[ranOperation + ranValue];
+        ranCard.GetComponent<BoostCardController>().boostMark = BoostMarkDictionary[ranOperation + ranValue];
 
         return ranCard;
     }

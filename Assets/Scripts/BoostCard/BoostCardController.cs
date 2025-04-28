@@ -3,16 +3,6 @@ using UnityEngine.XR;
 
 public class BoostCardController : MonoBehaviour
 {
-    public int cardId = 0;
-    public int CardId{
-        get{
-            return cardId;
-        }
-        set{
-            cardId = value;
-            gameObject.name = "Boost card " + value;
-        }
-    }
     private GameObject applyButton;
     private GameObject cancelButton;
     private GameObject boostCard;
@@ -28,6 +18,18 @@ public class BoostCardController : MonoBehaviour
             boostCard.GetComponent<BoostCard>().IsPicked = value;
         }
     }
+    public int cardId = 0;
+    public int CardId{
+        get{
+            return cardId;
+        }
+        set{
+            cardId = value;
+            gameObject.name = "Boost card " + value;
+        }
+    }
+    public Sprite boostMark = null;
+
     private void Awake()
     {
         boostCard = transform.GetChild(0).gameObject;

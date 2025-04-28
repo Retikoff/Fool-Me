@@ -109,9 +109,8 @@ public class BoostHandController : MonoBehaviour
     }
 
     public void ApplyBoost(){
-        pickedCard.GetComponent<BoostCardController>().SwitchButtons(false);
         gameController.ApplyBoost(pickedCard);
-        
+        //switch buttons??
         pickedCard = null;
     }
 }
