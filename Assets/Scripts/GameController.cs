@@ -1,7 +1,8 @@
 using System.Collections;
 using DG.Tweening;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -10,8 +11,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private BoostHandController boostHandController;
     [SerializeField] private GameObject numericCardFab;
     [SerializeField] private GameObject boostCardFab;
+    [SerializeField] private TextMeshProUGUI textObject;
     private GameObject selectedCard = null; 
     private int selectedCardValue = 0;
+
+    void Awake()
+    {
+        MessageController.textContainer = textObject;
+    }
 
     void Update()
     {
@@ -45,12 +52,12 @@ public class GameController : MonoBehaviour
 
     public bool ApplyBoost(GameObject obj){
         if(selectedCard == null){
-            //show message that numericCard is not selected
+            MessageController.ShowMessage("Select card to apply boost");
             return false;
         }
 
         if(selectedCard.GetComponent<CardController>().CurrentMarkIndex == 4){
-            //show message that selected card already have 4 marks
+            MessageController.ShowMessage("Selected card already has 4 boosts applied");
             return false;
         }
 
@@ -62,6 +69,9 @@ public class GameController : MonoBehaviour
         StartCoroutine(ChangeCardWithAnimation(obj, actionOperation, actionValue));
 
         selectedCard.GetComponent<CardController>().AddMark(obj.GetComponent<BoostCardController>().boostMark);
+
+        MessageController.ResetMessage();
+
         return true;
     }
 

@@ -20,7 +20,6 @@ public class NumericHandController : MonoBehaviour
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        //GameObject newCard = CardFactory.InstantiateNumericCard(card);
         GameObject newCard = CardFactory.GetRandomNumericCard(card);
         newCard.transform.position = spawnPoint.position;
         newCard.transform.rotation = spawnPoint.rotation;
@@ -84,6 +83,8 @@ public class NumericHandController : MonoBehaviour
 
         gameController.TurnCardSelected(pickedCard);
 
+        MessageController.ResetMessage();
+
         pickedCard = null;
     }
 
@@ -123,13 +124,5 @@ public class NumericHandController : MonoBehaviour
         selectedCard.GetComponent<CardController>().SetName();
         handCards.Add(selectedCard);
         UpdateCards();
-    }
-
-    private void DEBUGPrintHandCardsList(){
-        Debug.Log("List size: " + handCards.Count);
-        Debug.Log("All elements and their i");
-        for(int i = 0; i < handCards.Count; i++){
-            Debug.Log("Index " + i + " element: " + handCards[i]);
-        }
     }
 }

@@ -18,7 +18,6 @@ public class BoostHandController : MonoBehaviour
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        //GameObject newCard = Instantiate(card, spawnPoint.position, spawnPoint.rotation);
         GameObject newCard = CardFactory.GetRandomBoostCard(card);
         newCard.transform.position = spawnPoint.position;
         newCard.transform.rotation = spawnPoint.rotation;
@@ -91,7 +90,6 @@ public class BoostHandController : MonoBehaviour
         pickedCard.transform.DOMove(pickedCardPoint.position, 0.25f);
         pickedCard.transform.rotation = new Quaternion(0, 0, 0, 0);
         pickedCardController.SwitchButtons(true);
-        Debug.Log("Just picked " + pickedCardController.Action);
     }
 
     public void MovePickedCardToHand(){
@@ -110,7 +108,7 @@ public class BoostHandController : MonoBehaviour
 
     public void ApplyBoost(){
         bool isCompleted = gameController.ApplyBoost(pickedCard);
-        //switch buttons??
+
         if(isCompleted)
             pickedCard = null;
     }

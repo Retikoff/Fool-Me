@@ -44,6 +44,9 @@ TagManager:
   - name: NumericCards
     uniqueID: 1816165239
     locked: 0
+  - name: BoostCards
+    uniqueID: 2709222683
+    locked: 0
   - name: Marks
     uniqueID: 204025307
     locked: 0
