@@ -8,14 +8,19 @@ using UnityEngine.Splines;
 public class NumericHandController : MonoBehaviour
 {
     [SerializeField] private int maxHandSize;
-    [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private GameController gameController;
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform pickedCardPoint;
 
     private List<GameObject> handCards = new();
     private CardController[] cardControllers;
     private GameObject pickedCard = null;
+    private SplineContainer splineContainer;
+
+    private void Start()
+    {
+        splineContainer = GetComponent<SplineContainer>();
+    }
 
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
@@ -81,7 +86,7 @@ public class NumericHandController : MonoBehaviour
         pickedCard.name = "Selected card";
         pickedCard.GetComponent<CardController>().SwitchButtons(false);
 
-        gameController.TurnCardSelected(pickedCard);
+        playerController.TurnCardSelected(pickedCard);
 
         MessageController.ResetMessage();
 

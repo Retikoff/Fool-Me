@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform selectedPoint;
     [SerializeField] private NumericHandController numericHandController;

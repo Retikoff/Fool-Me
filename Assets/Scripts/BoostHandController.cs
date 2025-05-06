@@ -6,15 +6,20 @@ using UnityEngine.Splines;
 public class BoostHandController : MonoBehaviour
 {
     [SerializeField] private int maxHandSize;
-    [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private GameController gameController;
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform pickedCardPoint;
 
     private GameObject pickedCard = null;
     private List<GameObject> handCards = new();
     private BoostCardController[] cardControllers;
-    
+    private SplineContainer splineContainer;
+
+    private void Start()
+    {
+        splineContainer = GetComponent<SplineContainer>();   
+    }
+
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
@@ -107,7 +112,7 @@ public class BoostHandController : MonoBehaviour
     }
 
     public void ApplyBoost(){
-        bool isCompleted = gameController.ApplyBoost(pickedCard);
+        bool isCompleted = playerController.ApplyBoost(pickedCard);
 
         if(isCompleted)
             pickedCard = null;
