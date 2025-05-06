@@ -152,8 +152,9 @@ GameObject:
   - component: {fileID: 4597198676045311076}
   - component: {fileID: 1209336101228063850}
   - component: {fileID: -8761208815737300720}
+  - component: {fileID: 1185575746592499012}
   m_Layer: 5
-  m_Name: Button
+  m_Name: 'BoostButton '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,10 +175,10 @@ RectTransform:
   - {fileID: 4551720392065588889}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.48422223}
-  m_AnchorMax: {x: 1, y: 0.5174445}
-  m_AnchoredPosition: {x: -838, y: 0}
-  m_SizeDelta: {x: -1736.0236, y: 0}
+  m_AnchorMin: {x: 0, y: 0.3622963}
+  m_AnchorMax: {x: 1, y: 0.39325923}
+  m_AnchoredPosition: {x: 838, y: -1.800003}
+  m_SizeDelta: {x: -1736.0236, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3804225115269767976
 CanvasRenderer:
@@ -260,7 +261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1985814418851442829}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185575746592499012}
+        m_TargetAssemblyTypeName: DrawBoostCards, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnClick
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1209336101228063850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 7559363927031579841}
@@ -308,7 +321,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 1109261598
+  _assetId: 180261548
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
+--- !u!114 &1185575746592499012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083765730072473416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a37cefbd23255c47b71bedaa410c1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  playerManager: {fileID: 6426431613146937187, guid: 7df8aa8c142079a4a85e04542e67c658, type: 3}

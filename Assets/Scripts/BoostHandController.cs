@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Mirror;
 using UnityEngine;
 using UnityEngine.Splines;
 
-public class BoostHandController : MonoBehaviour
+public class BoostHandController : NetworkBehaviour
 {
     [SerializeField] private int maxHandSize;
     [SerializeField] private Transform spawnPoint;
@@ -23,12 +24,12 @@ public class BoostHandController : MonoBehaviour
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        GameObject newCard = CardFactory.GetRandomBoostCard(card);
-        newCard.transform.position = spawnPoint.position;
-        newCard.transform.rotation = spawnPoint.rotation;
-        newCard.transform.GetComponent<BoostCardController>().HandController = this;
 
-        handCards.Add(newCard);
+        card.transform.position = spawnPoint.position;
+        card.transform.rotation = spawnPoint.rotation;
+        card.transform.GetComponent<BoostCardController>().HandController = this;
+
+        handCards.Add(card);
         UpdateCards();
     }
 
@@ -57,6 +58,7 @@ public class BoostHandController : MonoBehaviour
             handCards[i].transform.DOMove(splinePosition, 0.25f);
             handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
         }
+
     }
 
     private void UpdateCardControllers(){

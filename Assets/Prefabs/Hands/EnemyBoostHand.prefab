@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1586333928052574643}
   - component: {fileID: -8478044064182479419}
   m_Layer: 0
-  m_Name: BoostHand
+  m_Name: EnemyBoostHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,8 +64,8 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: 3
-        y: -4.5
+        x: -3
+        y: 4.5
         z: 0
       TangentIn:
         x: -0
@@ -77,13 +77,13 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.4351622
-          y: 0.55734545
-          z: 0.55734533
-          w: 0.4351621
+          x: 0.4351621
+          y: 0.55734533
+          z: -0.55734545
+          w: -0.4351622
     - Position:
-        x: 5
-        y: -4
+        x: -5
+        y: 4
         z: 0
       TangentIn:
         x: 0
@@ -95,13 +95,13 @@ MonoBehaviour:
         z: 1.4100003
       Rotation:
         value:
-          x: 0.5000008
-          y: 0.49999923
-          z: 0.5000008
-          w: 0.49999923
+          x: -0.5
+          y: -0.5
+          z: 0.5
+          w: 0.5
     - Position:
-        x: 7
-        y: -4.5
+        x: -7
+        y: 4.5
         z: 0
       TangentIn:
         x: -0
@@ -113,10 +113,10 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.55734545
-          y: 0.4351622
-          z: 0.4351621
-          w: 0.55734533
+          x: 0.55734533
+          y: 0.43516204
+          z: -0.4351622
+          w: -0.5573454
     m_MetaData:
     - Mode: 0
       Tension: 0.5
@@ -147,10 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894a0456208f11a438fc45b262b292fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   maxHandSize: 8
   spawnPoint: {fileID: 8580014078569247581, guid: c72fe861b89fffc44b78d6c751ed82c9, type: 3}
   playerController: {fileID: 7339274616210242930, guid: 7df8aa8c142079a4a85e04542e67c658, type: 3}
-  pickedCardPoint: {fileID: 4119084732623784300, guid: 76f1c1aa808e07d4eb8fa71487644e52, type: 3}
+  pickedCardPoint: {fileID: 4519149867955844604, guid: 0de74a7187196bd48b26dcd5b694d3d8, type: 3}
 --- !u!114 &-1586333928052574643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 1220894621
+  _assetId: 2544638066
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
@@ -180,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 8966536056822734652}

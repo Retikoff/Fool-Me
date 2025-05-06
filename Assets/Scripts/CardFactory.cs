@@ -57,6 +57,14 @@ public class CardFactory : MonoBehaviour
         return newCard;
     }
 
+    static public GameObject InstantiateBoostCard(GameObject boostCard, string name = "Boost card"){
+        GameObject newCard = Instantiate(boostCard);
+        newCard.GetComponent<BoostCardController>().Action = boostCard.GetComponent<BoostCardController>().Action;
+        newCard.name = name;
+
+        return newCard;
+    }
+
     //add some argument to keep cards unique
     static public GameObject GetRandomNumericCard(GameObject cardFab){
         GameObject ranCard = InstantiateNumericCard(cardFab);

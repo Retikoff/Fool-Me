@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6174130149376202961}
   - component: {fileID: 8196337208119536956}
   m_Layer: 0
-  m_Name: NumericHand
+  m_Name: EnemyNumericHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259740987182922059}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -64,8 +64,8 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: -7
-        y: -4.5
+        x: 7
+        y: 4.5
         z: 0
       TangentIn:
         x: -0
@@ -78,12 +78,12 @@ MonoBehaviour:
       Rotation:
         value:
           x: 0.4351621
-          y: 0.5573454
-          z: 0.55734545
-          w: 0.43516222
+          y: 0.55734533
+          z: -0.55734545
+          w: -0.4351622
     - Position:
-        x: -5
-        y: -4
+        x: 5
+        y: 4
         z: 0
       TangentIn:
         x: 0
@@ -95,13 +95,13 @@ MonoBehaviour:
         z: 1.41
       Rotation:
         value:
-          x: 0.5
-          y: 0.5
-          z: 0.5
-          w: 0.5
+          x: 0.50000006
+          y: 0.49999994
+          z: -0.50000006
+          w: -0.49999994
     - Position:
-        x: -3
-        y: -4.5
+        x: 3
+        y: 4.5
         z: 0
       TangentIn:
         x: -0
@@ -113,9 +113,9 @@ MonoBehaviour:
         z: 0.20615529
       Rotation:
         value:
-          x: 0.55734545
-          y: 0.43516198
-          z: 0.4351623
+          x: -0.55734545
+          y: -0.4351622
+          z: 0.4351621
           w: 0.55734533
     m_MetaData:
     - Mode: 0
@@ -147,10 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dae4ec7b0128074aacd4b78335a8ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   maxHandSize: 4
   spawnPoint: {fileID: 9013328077597578282, guid: dbedbc00140101045b57fcae7ea9cdf8, type: 3}
   playerController: {fileID: 7339274616210242930, guid: 7df8aa8c142079a4a85e04542e67c658, type: 3}
-  pickedCardPoint: {fileID: 4801077901794927169, guid: b08227e97881b6348b1ae03c309ceaed, type: 3}
+  pickedCardPoint: {fileID: 5653291653504770871, guid: 910dfec267a6b7e4692ae9653c6a470d, type: 3}
 --- !u!114 &6174130149376202961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 7741575327144322383}
@@ -198,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 1949189822
+  _assetId: 1500596155
   serverOnly: 0
   visibility: 0
   hasSpawned: 0

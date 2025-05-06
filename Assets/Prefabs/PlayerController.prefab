@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7339274616210242930}
   - component: {fileID: 2947873004631581501}
   - component: {fileID: 2544911518922167743}
+  - component: {fileID: 6426431613146937187}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -72,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3877cbd0be80edaaa90d62295fdd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedPoint: {fileID: 855622222304490328, guid: 232bcb4f95338754bba51870ea042f6c, type: 3}
+  selectedPoint: {fileID: 855622222304490328, guid: ef2f57d5044ba2742826b732a5d78428, type: 3}
   numericHandController: {fileID: 2471255098097997744, guid: 6a3afe67a0d6c804189ce8b01784f866, type: 3}
   boostHandController: {fileID: 7058672287895674225, guid: 0163d9dcb7b350549b94667a69a59463, type: 3}
   numericCardFab: {fileID: 3883884907046479970, guid: cc1bc3dcb410f8545aedf62eb50b15ae, type: 3}
@@ -129,3 +130,24 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &6426431613146937187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912775146302479724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a8e45af940824f4db39143d81ba0fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  numericCardFab: {fileID: 3883884907046479970, guid: cc1bc3dcb410f8545aedf62eb50b15ae, type: 3}
+  boostCardFab: {fileID: 3097892853096448796, guid: e657014c4ca8e1842b6a9cc734f588c8, type: 3}
+  PlayerNumericHand: {fileID: 0}
+  PlayerBoostHand: {fileID: 0}
+  EnemyNumericHand: {fileID: 0}
+  EnemyBoostHand: {fileID: 0}

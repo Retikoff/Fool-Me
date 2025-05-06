@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Mirror;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
 
 
-public class NumericHandController : MonoBehaviour
+public class NumericHandController : NetworkBehaviour
 {
     [SerializeField] private int maxHandSize;
     [SerializeField] private Transform spawnPoint;
@@ -25,12 +26,11 @@ public class NumericHandController : MonoBehaviour
     public void DrawCard(GameObject card){
         if(handCards.Count >= maxHandSize) return;
 
-        GameObject newCard = CardFactory.GetRandomNumericCard(card);
-        newCard.transform.position = spawnPoint.position;
-        newCard.transform.rotation = spawnPoint.rotation;
-        newCard.transform.GetComponent<CardController>().HandController = this;
+        card.transform.position = spawnPoint.position;
+        card.transform.rotation = spawnPoint.rotation;
+        card.transform.GetComponent<CardController>().HandController = this;
         
-        handCards.Add(newCard);
+        handCards.Add(card);
         UpdateCards();
     }
 

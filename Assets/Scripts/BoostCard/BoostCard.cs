@@ -1,3 +1,4 @@
+using Mirror;
 using UnityEngine;
 
 public class BoostCard : MonoBehaviour
@@ -15,10 +16,5 @@ public class BoostCard : MonoBehaviour
         if(!IsPicked){
             cardController.TurnPicked();
         }
-    }
-
-    private void OnMouseOver()
-    {
-        cardController.PrintOveredCard();
     }
 }

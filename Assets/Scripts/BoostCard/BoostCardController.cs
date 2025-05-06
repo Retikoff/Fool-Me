@@ -52,10 +52,6 @@ public class BoostCardController : MonoBehaviour
         HandController.GetComponent<BoostHandController>().MovePickedCardToHand();
     }
 
-    public void PrintOveredCard(){
-        Debug.Log("Overed card: " + Action);
-    }
-
     public void ApplyBoost(){
         HandController.ApplyBoost();
     }
