@@ -24,15 +24,19 @@ public class NumericHandController : NetworkBehaviour
     }
 
     public void DrawCard(GameObject card){
-        if(handCards.Count >= maxHandSize) return;
-
-        card.transform.position = spawnPoint.position;
-        card.transform.rotation = spawnPoint.rotation;
-        card.transform.GetComponent<CardController>().HandController = this;
-        
-        handCards.Add(card);
-        UpdateCards();
+        card.transform.SetParent(gameObject.transform, false);
     }
+
+    // public void DrawCard(GameObject card){
+    //     if(handCards.Count >= maxHandSize) return;
+
+    //     card.transform.position = spawnPoint.position;
+    //     card.transform.rotation = spawnPoint.rotation;
+    //     card.transform.GetComponent<CardController>().HandController = this;
+        
+    //     handCards.Add(card);
+    //     UpdateCards();
+    // }
 
     private void UpdateCards(){
         UpdateCardPositions();
