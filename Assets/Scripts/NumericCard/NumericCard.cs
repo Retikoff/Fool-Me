@@ -1,6 +1,7 @@
+using Mirror;
 using UnityEngine;
 
-public class NumericCard : MonoBehaviour
+public class NumericCard : NetworkBehaviour
 {
     private CardController cardController;
     public bool IsPicked { get;set; } = false;
@@ -12,7 +13,7 @@ public class NumericCard : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(!IsPicked){
+        if(!IsPicked && isOwned){
             cardController.TurnPicked();
         }
     }

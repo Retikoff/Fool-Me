@@ -1,7 +1,7 @@
 using Mirror;
 using UnityEngine;
 
-public class BoostCard : MonoBehaviour
+public class BoostCard : NetworkBehaviour
 {
     private BoostCardController cardController;
     public bool IsPicked {get; set;} = false;
@@ -13,7 +13,7 @@ public class BoostCard : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(!IsPicked){
+        if(!IsPicked && isOwned){
             cardController.TurnPicked();
         }
     }

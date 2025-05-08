@@ -49,6 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb8f90bf4af853409498a80a903b261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &1584339730759120774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +59,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6912775146302479724}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 571b7eb0afb0b8f458450b6b764f7830, type: 3}
   m_Name: 
@@ -73,12 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3877cbd0be80edaaa90d62295fdd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedPoint: {fileID: 855622222304490328, guid: ef2f57d5044ba2742826b732a5d78428, type: 3}
-  numericHandController: {fileID: 2471255098097997744, guid: 6a3afe67a0d6c804189ce8b01784f866, type: 3}
-  boostHandController: {fileID: 7058672287895674225, guid: 0163d9dcb7b350549b94667a69a59463, type: 3}
-  numericCardFab: {fileID: 3883884907046479970, guid: cc1bc3dcb410f8545aedf62eb50b15ae, type: 3}
-  boostCardFab: {fileID: 3097892853096448796, guid: e657014c4ca8e1842b6a9cc734f588c8, type: 3}
-  textObject: {fileID: 68130915288353743, guid: e0be1d7571f070644ae7df96d48cfe20, type: 3}
 --- !u!114 &2947873004631581501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +148,4 @@ MonoBehaviour:
   PlayerBoostHand: {fileID: 0}
   EnemyNumericHand: {fileID: 0}
   EnemyBoostHand: {fileID: 0}
+  numericCardsCount: 16

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8966536056822734652}
-  - component: {fileID: 8236982326652996590}
   - component: {fileID: 7058672287895674225}
   - component: {fileID: -1586333928052574643}
   - component: {fileID: -8478044064182479419}
+  - component: {fileID: 2484496529433132824}
   m_Layer: 0
   m_Name: PlayerBoostHand
   m_TagString: Untagged
@@ -20,14 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8966536056822734652
-Transform:
+--- !u!224 &8966536056822734652
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675961100807999687}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,106 +34,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8236982326652996590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675961100807999687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_EditModeType: 1
-    m_Knots: []
-    m_MetaData: []
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Splines:
-  - m_EditModeType: 1
-    m_Knots:
-    - Position:
-        x: 3
-        y: -4.5
-        z: 0
-      TangentIn:
-        x: -0
-        y: -0
-        z: -0.20615529
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0.20615529
-      Rotation:
-        value:
-          x: 0.4351622
-          y: 0.5573454
-          z: 0.55734533
-          w: 0.43516204
-    - Position:
-        x: 5
-        y: -4
-        z: 0
-      TangentIn:
-        x: 0
-        y: 0
-        z: -1.4100003
-      TangentOut:
-        x: 0
-        y: 0
-        z: 1.4100003
-      Rotation:
-        value:
-          x: 0.5
-          y: 0.5
-          z: 0.5
-          w: 0.5
-    - Position:
-        x: 7
-        y: -4.5
-        z: 0
-      TangentIn:
-        x: -0
-        y: -0
-        z: -0.20615529
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0.20615529
-      Rotation:
-        value:
-          x: 0.55734533
-          y: 0.43516204
-          z: 0.4351622
-          w: 0.5573454
-    m_MetaData:
-    - Mode: 0
-      Tension: 0.5
-    - Mode: 2
-      Tension: 0.5
-    - Mode: 0
-      Tension: 0.5
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Knots:
-    m_KnotsLink: []
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3, y: -7}
+  m_SizeDelta: {x: 9, y: 4}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &7058672287895674225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +54,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  maxHandSize: 8
-  spawnPoint: {fileID: 8580014078569247581, guid: c72fe861b89fffc44b78d6c751ed82c9, type: 3}
+  maxHandSize: 6
   playerController: {fileID: 7339274616210242930, guid: 7df8aa8c142079a4a85e04542e67c658, type: 3}
   pickedCardPoint: {fileID: 4119084732623784300, guid: 36f8f671df56fc4448fcfc084f0c08cf, type: 3}
 --- !u!114 &-1586333928052574643
@@ -205,3 +108,27 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &2484496529433132824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675961100807999687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 2
+  m_StartAxis: 1
+  m_CellSize: {x: 1.5, y: 4}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 2
+  m_ConstraintCount: 1

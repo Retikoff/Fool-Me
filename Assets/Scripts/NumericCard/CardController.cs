@@ -1,9 +1,11 @@
 using DG.Tweening;
+using Mirror;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.XR;
 
-public class CardController : MonoBehaviour
+public class CardController : NetworkBehaviour
 {
     private int cardId = 0;
     public int CardId {
@@ -13,7 +15,6 @@ public class CardController : MonoBehaviour
         } 
         set{
             cardId = value;
-            //gameObject.name = "Card " + cardId;
         }
     }
     private GameObject applyButton;
@@ -30,7 +31,7 @@ public class CardController : MonoBehaviour
             numericCard.GetComponent<NumericCard>().IsPicked = value;
         }
     }
-    private int cardValue = 0;
+    public int cardValue = 0;
     public int CardValue {
         get{
             return cardValue; 
@@ -55,8 +56,7 @@ public class CardController : MonoBehaviour
         for(int i = 0; i < 4; i++){
             markSlots[i] = tmp.transform.GetChild(i).gameObject;
         }
-        SwitchMarks(false);
-    }   
+    }
 
     public void TurnPicked(){
         HandController.GetComponent<NumericHandController>().PickCard(CardId);
@@ -67,11 +67,6 @@ public class CardController : MonoBehaviour
         cancelButton.SetActive(value);
     }
 
-    public void SwitchMarks(bool value){
-        for(int i = 0;i < 4; i++){
-            markSlots[i].SetActive(value);
-        }
-    }
 
     public void TurnSelected(){
         HandController.GetComponent<NumericHandController>().MoveCardToSelected();
@@ -85,10 +80,9 @@ public class CardController : MonoBehaviour
         gameObject.name = "Card " + CardValue;
     }
 
-    public void AddMark(Sprite mark){
+    public void AddMark(GameObject mark){
         if(CurrentMarkIndex > 3) return;
-        Debug.Log(mark); 
-        markSlots[CurrentMarkIndex].GetComponent<SpriteRenderer>().sprite = mark;
+        mark.transform.SetParent(markSlots[CurrentMarkIndex].transform, false);
         CurrentMarkIndex++;
     }
 }

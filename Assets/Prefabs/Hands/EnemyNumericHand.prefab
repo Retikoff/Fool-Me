@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2471255098097997744}
   - component: {fileID: 6174130149376202961}
   - component: {fileID: 8196337208119536956}
+  - component: {fileID: 4026718737041081537}
   m_Layer: 0
   m_Name: EnemyNumericHand
   m_TagString: Untagged
@@ -19,21 +20,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7741575327144322383
-Transform:
+--- !u!224 &7741575327144322383
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259740987182922059}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3, y: 3}
+  m_SizeDelta: {x: 6, y: 4}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &2471255098097997744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,9 +55,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   maxHandSize: 4
-  spawnPoint: {fileID: 9013328077597578282, guid: dbedbc00140101045b57fcae7ea9cdf8, type: 3}
   playerController: {fileID: 7339274616210242930, guid: 7df8aa8c142079a4a85e04542e67c658, type: 3}
-  pickedCardPoint: {fileID: 0}
+  pickedCardPoint: {fileID: 5653291653504770871, guid: 910dfec267a6b7e4692ae9653c6a470d, type: 3}
 --- !u!114 &6174130149376202961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,3 +108,27 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
+--- !u!114 &4026718737041081537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259740987182922059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 2
+  m_StartAxis: 1
+  m_CellSize: {x: 1.5, y: 4}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 2
+  m_ConstraintCount: 1

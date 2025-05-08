@@ -2,63 +2,29 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Mirror;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class BoostHandController : NetworkBehaviour
 {
     [SerializeField] private int maxHandSize;
-    [SerializeField] private Transform spawnPoint;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform pickedCardPoint;
 
     private GameObject pickedCard = null;
     private List<GameObject> handCards = new();
     private BoostCardController[] cardControllers;
-    private SplineContainer splineContainer;
-
-    private void Start()
-    {
-        splineContainer = GetComponent<SplineContainer>();   
-    }
 
     public void DrawCard(GameObject card){
-        if(handCards.Count >= maxHandSize) return;
-
-
-        card.transform.position = spawnPoint.position;
-        card.transform.rotation = spawnPoint.rotation;
-        card.transform.GetComponent<BoostCardController>().HandController = this;
-
+        card.transform.SetParent(gameObject.transform, false);
+        card.GetComponent<BoostCardController>().HandController = this;
         handCards.Add(card);
         UpdateCards();
     }
 
+    #region CardUpdates
     private void UpdateCards(){
-        UpdateCardPositions();
         UpdateCardControllers();
         UpdateCardIndexes();
         UpdateCardLayerOrders();
-    }
-
-    private void UpdateCardPositions(){
-        if(handCards.Count == 0) return;
-
-        DOTween.KillAll();
-
-        float cardSpacing = 1f / maxHandSize;
-        float firstCardPosition = 0.5f - (handCards.Count - 1) * cardSpacing / 2;
-        Spline spline = splineContainer.Spline;
-
-        for(int i = 0; i < handCards.Count; i++){
-            float pos = firstCardPosition + i * cardSpacing;
-            Vector3 splinePosition = spline.EvaluatePosition(pos);
-            Vector3 forward = spline.EvaluateTangent(pos);
-            Vector3 up = spline.EvaluateUpVector(pos);
-            Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
-            handCards[i].transform.DOMove(splinePosition, 0.25f);
-            handCards[i].transform.DOLocalRotateQuaternion(rotation, 0.25f);
-        }
-
     }
 
     private void UpdateCardControllers(){
@@ -79,16 +45,16 @@ public class BoostHandController : NetworkBehaviour
     private void UpdateCardLayerOrders(){
         for(int i = 0; i < handCards.Count; i++){
             handCards[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
-            handCards[i].GetComponentInChildren<Collider2D>().layerOverridePriority = i;
         }
     }
-
+    #endregion
     public void PickCard(int id){
         MovePickedCardToHand();
 
         pickedCard = handCards[id];
         var pickedCardController = pickedCard.GetComponent<BoostCardController>();
 
+        pickedCard.transform.SetParent(null);
         handCards.RemoveAt(id);
         UpdateCards();
 
@@ -107,6 +73,7 @@ public class BoostHandController : NetworkBehaviour
         pickedCard.GetComponent<BoostCardController>().SwitchButtons(false);
         pickedCard.GetComponent<BoostCardController>().IsPicked = false;
 
+        pickedCard.transform.SetParent(transform, false);
         handCards.Add(pickedCard);
         pickedCard = null;
 
@@ -114,9 +81,9 @@ public class BoostHandController : NetworkBehaviour
     }
 
     public void ApplyBoost(){
-        bool isCompleted = playerController.ApplyBoost(pickedCard);
+       // bool isCompleted = playerController.ApplyBoost(pickedCard);
 
-        if(isCompleted)
-            pickedCard = null;
+        //if(isCompleted)
+        //    pickedCard = null;
     }
 }

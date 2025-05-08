@@ -7,7 +7,11 @@ public class BoostCardController : MonoBehaviour
     private GameObject cancelButton;
     private GameObject boostCard;
     public BoostHandController HandController {get;set;}
-    public string Action {get; set;}
+    public string action;
+    public string Action {
+        get{return action;}
+        set{action = value;}
+    }
     private bool isPicked = false;
     public bool IsPicked{
         get{
@@ -28,7 +32,7 @@ public class BoostCardController : MonoBehaviour
             gameObject.name = "Boost card " + value;
         }
     }
-    public Sprite boostMark = null;
+    public GameObject boostMark = null;
 
     private void Awake()
     {
