@@ -383,9 +383,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   target: {fileID: 4145171961882867251}
-  syncPosition: 0
+  syncPosition: 1
   syncRotation: 1
-  syncScale: 0
+  syncScale: 1
   onlySyncOnChange: 1
   compressRotation: 1
   interpolatePosition: 1
@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 8778458008170877262}
   - component: {fileID: 3412009796376657588}
   - component: {fileID: 7518440601790434945}
+  - component: {fileID: 6405133782564417188}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -733,3 +734,17 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+--- !u!114 &6405133782564417188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689066735819488420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a538e6615f3b8143897906570152feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardFront: {fileID: 21300000, guid: 62ee728129a98dd4980d7240a73a573c, type: 3}
+  cardBack: {fileID: 21300000, guid: a35fd094c4017b44cafc682af60fa3c4, type: 3}

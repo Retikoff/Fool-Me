@@ -6,13 +6,12 @@ using UnityEngine;
 public class NumericHandController : NetworkBehaviour
 {
     [SerializeField] private int maxHandSize;
-    [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform pickedCardPoint;
 
-    private List<GameObject> handCards = new();
+    //change to private after debug
+    public List<GameObject> handCards = new();
     private CardController[] cardControllers;
     private GameObject pickedCard = null;
-
 
     public void DrawCard(GameObject card){
         card.transform.SetParent(gameObject.transform, false);
@@ -25,7 +24,6 @@ public class NumericHandController : NetworkBehaviour
     private void UpdateCards(){
         UpdateCardControllers();
         UpdateCardIndexes();
-        UpdateCardLayerOrders();
     }
 
     private void UpdateCardControllers(){
@@ -42,20 +40,16 @@ public class NumericHandController : NetworkBehaviour
             cardControllers[i].CardId = i; 
         }
     }
-
-    private void UpdateCardLayerOrders(){
-        for(int i = 0; i < handCards.Count; i++){
-            handCards[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i;
-        }
-    }
     #endregion
-    public void MoveCardToSelected(){
+    public void SelectPickedCard(){
         pickedCard.name = "Selected card";
         pickedCard.GetComponent<CardController>().SwitchButtons(false);
 
-        //playerController.TurnCardSelected(pickedCard);
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        PlayerManager playerManager = networkIdentity.GetComponent<PlayerManager>();
+        playerManager.CmdSelectCard(pickedCard);
 
-        MessageController.ResetMessage();
+        //MessageController.ResetMessage();
 
         pickedCard = null;
     }
@@ -66,13 +60,13 @@ public class NumericHandController : NetworkBehaviour
         pickedCard = handCards[id];
         var pickedCardController = pickedCard.GetComponent<CardController>();
 
-        pickedCard.transform.SetParent(null);
+        pickedCard.transform.SetParent(pickedCardPoint, false);
+        pickedCard.transform.position = pickedCardPoint.position;
         handCards.RemoveAt(id);
         UpdateCards();
 
         pickedCardController.IsPicked = true;
 
-        pickedCard.transform.DOMove(pickedCardPoint.position, 0.25f);
         pickedCard.transform.rotation = new Quaternion(0,0,0,0);
         pickedCardController.SwitchButtons(true);
     }
@@ -84,7 +78,7 @@ public class NumericHandController : NetworkBehaviour
         pickedCard.GetComponent<CardController>().SwitchButtons(false); 
         pickedCard.GetComponent<CardController>().IsPicked = false;
 
-        pickedCard.transform.SetParent(gameObject.transform, false);
+        pickedCard.transform.SetParent(transform, false);
         handCards.Add(pickedCard);
         pickedCard = null;  
         UpdateCards();

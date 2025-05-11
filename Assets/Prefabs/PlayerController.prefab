@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2174766759633252526}
   - component: {fileID: 6264119179438756344}
   - component: {fileID: 1584339730759120774}
-  - component: {fileID: 7339274616210242930}
   - component: {fileID: 2947873004631581501}
   - component: {fileID: 2544911518922167743}
   - component: {fileID: 6426431613146937187}
@@ -62,18 +61,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 571b7eb0afb0b8f458450b6b764f7830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7339274616210242930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6912775146302479724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd3877cbd0be80edaaa90d62295fdd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2947873004631581501
@@ -148,4 +135,6 @@ MonoBehaviour:
   PlayerBoostHand: {fileID: 0}
   EnemyNumericHand: {fileID: 0}
   EnemyBoostHand: {fileID: 0}
+  PlayerSelectedCard: {fileID: 0}
+  EnemySelectedCard: {fileID: 0}
   numericCardsCount: 16

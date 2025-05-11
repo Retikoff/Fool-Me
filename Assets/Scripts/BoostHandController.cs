@@ -6,7 +6,6 @@ using UnityEngine;
 public class BoostHandController : NetworkBehaviour
 {
     [SerializeField] private int maxHandSize;
-    [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform pickedCardPoint;
 
     private GameObject pickedCard = null;
@@ -54,13 +53,14 @@ public class BoostHandController : NetworkBehaviour
         pickedCard = handCards[id];
         var pickedCardController = pickedCard.GetComponent<BoostCardController>();
 
-        pickedCard.transform.SetParent(null);
+        pickedCard.transform.SetParent(pickedCardPoint, false);
+
         handCards.RemoveAt(id);
         UpdateCards();
 
         pickedCardController.IsPicked = true;
         pickedCard.name = "Picked Boost card";
-        pickedCard.transform.DOMove(pickedCardPoint.position, 0.25f);
+
         pickedCard.transform.rotation = new Quaternion(0, 0, 0, 0);
         pickedCardController.SwitchButtons(true);
     }

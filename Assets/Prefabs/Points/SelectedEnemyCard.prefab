@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7705950477007188770}
   - component: {fileID: 1356367981316856298}
   - component: {fileID: 9061351481839703376}
+  - component: {fileID: -5108647045213267462}
   m_Layer: 0
-  m_Name: SelectedEnemyCardPlacement
+  m_Name: SelectedEnemyCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,3 +85,18 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &-5108647045213267462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320933654498971529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcdbeb3fbb03a574cb77edfa7db36058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0

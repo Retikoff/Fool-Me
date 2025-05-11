@@ -55,7 +55,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   maxHandSize: 4
-  playerController: {fileID: 7339274616210242930, guid: 7df8aa8c142079a4a85e04542e67c658, type: 3}
   pickedCardPoint: {fileID: 4801077901794927169, guid: e04456082fc3d83438b00af98dd695b3, type: 3}
 --- !u!114 &6174130149376202961
 MonoBehaviour:

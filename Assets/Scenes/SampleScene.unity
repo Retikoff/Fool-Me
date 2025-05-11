@@ -560,6 +560,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab360675f6638764ba6708fade8ff641, type: 3}
+--- !u!1 &1033426754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3374162592593920509, guid: ef2f57d5044ba2742826b732a5d78428, type: 3}
+  m_PrefabInstance: {fileID: 1672141917005841599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1033426758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033426754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcdbeb3fbb03a574cb77edfa7db36058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &1158606685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,12 +1289,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374162592593920509, guid: ef2f57d5044ba2742826b732a5d78428, type: 3}
       propertyPath: m_Name
-      value: SelectedPlayerCardPlacement
+      value: SelectedPlayerCard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3374162592593920509, guid: ef2f57d5044ba2742826b732a5d78428, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1033426758}
   m_SourcePrefab: {fileID: 100100000, guid: ef2f57d5044ba2742826b732a5d78428, type: 3}
 --- !u!1001 &2171992897867176542
 PrefabInstance:
@@ -1764,7 +1787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6320933654498971529, guid: 833a763ca80452d48b2638c37c1b475a, type: 3}
       propertyPath: m_Name
-      value: SelectedEnemyCardPlacement
+      value: SelectedEnemyCard
       objectReference: {fileID: 0}
     - target: {fileID: 7705950477007188770, guid: 833a763ca80452d48b2638c37c1b475a, type: 3}
       propertyPath: m_LocalPosition.x

@@ -7,7 +7,8 @@ using UnityEngine.XR;
 
 public class CardController : NetworkBehaviour
 {
-    private int cardId = 0;
+    // change to private after debug
+    public int cardId = 0;
     public int CardId {
         get
         {
@@ -46,7 +47,6 @@ public class CardController : NetworkBehaviour
 
     private void Awake()
     {
-        //hard code
         applyButton = transform.GetChild(1).gameObject;
         applyButton.SetActive(false);
         cancelButton = transform.GetChild(2).gameObject;
@@ -69,7 +69,7 @@ public class CardController : NetworkBehaviour
 
 
     public void TurnSelected(){
-        HandController.GetComponent<NumericHandController>().MoveCardToSelected();
+        HandController.GetComponent<NumericHandController>().SelectPickedCard();
     }
 
     public void MovePickedCardToHand(){

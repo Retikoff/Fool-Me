@@ -10,6 +10,8 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] private GameObject PlayerBoostHand;
     [SerializeField] private GameObject EnemyNumericHand;
     [SerializeField] private GameObject EnemyBoostHand;
+    [SerializeField] private GameObject PlayerSelectedCard;
+    [SerializeField] private GameObject EnemySelectedCard;
 
     public int numericCardsCount = 16;
     private Dictionary<int, GameObject> NumericDictionary = new();
@@ -25,6 +27,8 @@ public class PlayerManager : NetworkBehaviour
         PlayerBoostHand = GameObject.Find("PlayerBoostHand");
         EnemyNumericHand = GameObject.Find("EnemyNumericHand");
         EnemyBoostHand = GameObject.Find("EnemyBoostHand");
+        PlayerSelectedCard = GameObject.Find("SelectedPlayerCard");
+        EnemySelectedCard = GameObject.Find("SelectedEnemyCard");
     }
 
     [Server]
@@ -81,6 +85,16 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdSelectCard(GameObject card){
+        RpcShowNumericCard(card, "Selected");
+    }
+
+    [Command]
+    public void CmdMoveSelectedCardToHand(GameObject card){
+        RpcMoveSelectedCardToHand(card);
+    }
+
     [ClientRpc]
     private void RpcShowNumericCard(GameObject card ,string type){
         if(type == "Dealt"){
@@ -89,10 +103,16 @@ public class PlayerManager : NetworkBehaviour
             }
             else{
                 EnemyNumericHand.GetComponent<NumericHandController>().DrawCard(card);
+                card.GetComponentInChildren<CardFlipper>().Flip();
             }
         }
         else if(type == "Selected"){
-
+            if(isOwned){
+                PlayerSelectedCard.GetComponent<SelectedCard>().ChangeCard(card);
+            }
+            else{
+                EnemySelectedCard.GetComponent<SelectedCard>().ChangeCard(card);
+            }
         }
     }
 
@@ -108,6 +128,16 @@ public class PlayerManager : NetworkBehaviour
         }
         else if(type == "Selected"){
 
+        }
+    }
+
+    [ClientRpc]
+    private void RpcMoveSelectedCardToHand(GameObject card){
+        if(isOwned){
+            PlayerNumericHand.GetComponent<NumericHandController>().MoveSelectedCardToHand(card);
+        }
+        else{
+            EnemyNumericHand.GetComponent<NumericHandController>().MoveSelectedCardToHand(card);
         }
     }
 }
