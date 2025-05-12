@@ -67,7 +67,6 @@ public class CardController : NetworkBehaviour
         cancelButton.SetActive(value);
     }
 
-
     public void TurnSelected(){
         HandController.GetComponent<NumericHandController>().SelectPickedCard();
     }
@@ -81,8 +80,9 @@ public class CardController : NetworkBehaviour
     }
 
     public void AddMark(GameObject mark){
-        if(CurrentMarkIndex > 3) return;
-        mark.transform.SetParent(markSlots[CurrentMarkIndex].transform, false);
-        CurrentMarkIndex++;
+        Debug.Log("Added mark");
+        //if(CurrentMarkIndex > 3) return;
+        //mark.transform.SetParent(markSlots[CurrentMarkIndex].transform, false);
+        //CurrentMarkIndex++;
     }
 }

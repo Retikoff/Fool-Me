@@ -54,9 +54,7 @@ public class BoostHandController : NetworkBehaviour
         var pickedCardController = pickedCard.GetComponent<BoostCardController>();
 
         pickedCard.transform.SetParent(pickedCardPoint, false);
-
-        handCards.RemoveAt(id);
-        UpdateCards();
+        pickedCard.transform.localPosition = Vector3.zero;
 
         pickedCardController.IsPicked = true;
         pickedCard.name = "Picked Boost card";
@@ -74,16 +72,14 @@ public class BoostHandController : NetworkBehaviour
         pickedCard.GetComponent<BoostCardController>().IsPicked = false;
 
         pickedCard.transform.SetParent(transform, false);
-        handCards.Add(pickedCard);
         pickedCard = null;
-
-        UpdateCards();
     }
 
     public void ApplyBoost(){
-       // bool isCompleted = playerController.ApplyBoost(pickedCard);
-
-        //if(isCompleted)
-        //    pickedCard = null;
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        PlayerManager playerManager = networkIdentity.GetComponent<PlayerManager>();
+        playerManager.CmdApplyBoost(pickedCard);
+        handCards.Remove(pickedCard);
+        UpdateCards();
     }
 }

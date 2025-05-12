@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class PlayerManager : NetworkBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerManager : NetworkBehaviour
     private Dictionary<int, GameObject> NumericDictionary = new();
     private Dictionary<string, GameObject> BoostDictionary = new();
     private Dictionary<string, GameObject> BoostMarkDictionary = new();
+    private readonly List<Sprite> NumericSpriteList = new();
     private string[] operations = {"+","*","-"};
 
     public override void OnStartClient()
@@ -38,7 +40,10 @@ public class PlayerManager : NetworkBehaviour
 
         for(int i = 0; i < numericCardsCount; i++){
             NumericDictionary[i] = Resources.Load<GameObject>("NumericCards/Num_Card_" + i); 
+            NumericSpriteList.Add(Resources.Load<Sprite>("Sprites/NumericCards/Card_" + i));
         } 
+
+        Debug.Log(NumericSpriteList[12]);
 
         for(int i = 1; i <= 4;i++){
             BoostDictionary["-" + i] = Resources.Load<GameObject>("BoostCards/Boost_Card_min_" + i);
@@ -95,6 +100,16 @@ public class PlayerManager : NetworkBehaviour
         RpcMoveSelectedCardToHand(card);
     }
 
+    [Command]
+    public void CmdApplyBoost(GameObject boostCard){
+        RpcShowBoostCard(boostCard, "Selected");
+    }
+
+    [Command]
+    public void CmdChangeCard(GameObject card, int newValue){
+        RpcChangeCard(card, newValue);
+    }
+
     [ClientRpc]
     private void RpcShowNumericCard(GameObject card ,string type){
         if(type == "Dealt"){
@@ -103,7 +118,8 @@ public class PlayerManager : NetworkBehaviour
             }
             else{
                 EnemyNumericHand.GetComponent<NumericHandController>().DrawCard(card);
-                card.GetComponentInChildren<CardFlipper>().Flip();
+                //uncomment after boostApply is completed
+                //card.GetComponentInChildren<CardFlipper>().Flip();
             }
         }
         else if(type == "Selected"){
@@ -127,7 +143,12 @@ public class PlayerManager : NetworkBehaviour
             }
         }
         else if(type == "Selected"){
-
+            if(isOwned){
+                PlayerSelectedCard.GetComponent<SelectedCard>().ApplyBoost(card);
+            }
+            else{
+                EnemySelectedCard.GetComponent<SelectedCard>().ApplyBoost(card);
+            }
         }
     }
 
@@ -139,5 +160,11 @@ public class PlayerManager : NetworkBehaviour
         else{
             EnemyNumericHand.GetComponent<NumericHandController>().MoveSelectedCardToHand(card);
         }
+    }
+
+    [ClientRpc]
+    private void RpcChangeCard(GameObject card, int newValue){
+        card.GetComponentInChildren<SpriteRenderer>().sprite = NumericSpriteList[newValue];
+        card.GetComponent<CardController>().CardValue = newValue;
     }
 }

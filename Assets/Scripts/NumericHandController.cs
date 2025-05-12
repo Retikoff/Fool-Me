@@ -51,6 +51,7 @@ public class NumericHandController : NetworkBehaviour
 
         //MessageController.ResetMessage();
 
+        handCards.Remove(pickedCard);
         pickedCard = null;
     }
 
@@ -62,8 +63,6 @@ public class NumericHandController : NetworkBehaviour
 
         pickedCard.transform.SetParent(pickedCardPoint, false);
         pickedCard.transform.position = pickedCardPoint.position;
-        handCards.RemoveAt(id);
-        UpdateCards();
 
         pickedCardController.IsPicked = true;
 
@@ -79,16 +78,22 @@ public class NumericHandController : NetworkBehaviour
         pickedCard.GetComponent<CardController>().IsPicked = false;
 
         pickedCard.transform.SetParent(transform, false);
-        handCards.Add(pickedCard);
         pickedCard = null;  
-        UpdateCards();
    }
 
     public void MoveSelectedCardToHand(GameObject selectedCard){
+        if(selectedCard == null) return;
         selectedCard.GetComponent<CardController>().IsPicked = false;
         selectedCard.GetComponent<CardController>().SetName();
         selectedCard.transform.SetParent(gameObject.transform, false);
-        handCards.Add(selectedCard);
+    }
+
+    public void ChangeCard(GameObject card, GameObject newCard){
+        handCards.Add(newCard);
+        newCard.transform.SetParent(gameObject.transform, false);
+        newCard.GetComponent<CardController>().HandController = this;
         UpdateCards();
+        PickCard(handCards.Count - 1);
+        SelectPickedCard();
     }
 }
